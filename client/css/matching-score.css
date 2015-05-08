@@ -4,3 +4,5 @@ a.circle {width: 100px; height: 100px; line-height: 100px; margin:10px; border-r
 a:hover {background-color: #e5e5e5; font-weight: bold}
 .category, .time, .button-bar {clear: both; margin: 0 auto; text-align: center}
 .criteria {width: 500px}
+
+
