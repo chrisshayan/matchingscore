@@ -1,8 +1,21 @@
 /* CSS declarations go here */
+
+body {background: #eee;color: #666666;}
 section {margin: 30px auto}
 a.circle {width: 100px; height: 100px; line-height: 100px; margin:10px; border-radius: 50%; background-color: #fff; display: inline-block; text-align: center; text-decoration: none; }
 a:hover {background-color: #e5e5e5; font-weight: bold}
 .category, .time, .button-bar {clear: both; margin: 0 auto; text-align: center}
 .criteria {width: 500px}
+
+
+.table-bordered{border:1px solid #e8e8e8; background:#fff}
+.table-bordered > thead > tr > th,
+.table-bordered > tbody > tr > th,
+.table-bordered > tfoot > tr > th,
+.table-bordered > thead > tr > td,
+.table-bordered > tbody > tr > td,
+.table-bordered > tfoot > tr > td{border:1px solid #e8e8e8;}
+.table-bordered > thead > tr > th,
+.table-bordered > thead > tr > td{border-bottom-width:2px;}
 
 
