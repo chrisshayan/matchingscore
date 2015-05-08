@@ -5,6 +5,9 @@
 # but you can also edit it by hand.
 
 meteor-platform
-autopublish
+iron:router
+http
+percolate:synced-cron
 insecure
+sacha:spin
 mizzao:bootstrap-3
