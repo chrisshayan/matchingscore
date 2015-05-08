@@ -1,0 +1,20 @@
+<template name="matchingScoresList">
+	<section class="matchingScoresList">
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<th>Category Name</th>
+					<th>Min</th>
+					<th>Max</th>
+					<th>Average</th>
+					<th>Total</th>
+				</tr>
+			</thead>
+			<tbody class="matchingScores">
+				{{#each matchingScores}}
+					{{> matchingScore}}
+				{{/each}}
+			</tbody>
+		</table>
+	</section>
+</template>
