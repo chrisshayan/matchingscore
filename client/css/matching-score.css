@@ -1,8 +1,142 @@
 /* CSS declarations go here */
-section {margin: 30px auto}
-a.circle {width: 100px; height: 100px; line-height: 100px; margin:10px; border-radius: 50%; background-color: #fff; display: inline-block; text-align: center; text-decoration: none; }
-a:hover {background-color: #e5e5e5; font-weight: bold}
-.category, .time, .button-bar {clear: both; margin: 0 auto; text-align: center}
-.criteria {width: 500px}
-
-
+body {
+  background: #eee;
+  color: #666666;
+}
+section {
+  margin: 30px auto;
+}
+a.circle {
+  width: 100px;
+  height: 100px;
+  line-height: 100px;
+  margin: 10px;
+  border-radius: 50%;
+  background-color: #fff;
+  display: inline-block;
+  text-align: center;
+  text-decoration: none;
+}
+a:hover {
+  background-color: #e5e5e5;
+  font-weight: bold;
+}
+.category,
+.time,
+.button-bar {
+  clear: both;
+  margin: 0 auto;
+  text-align: center;
+}
+.criteria {
+  width: 500px;
+}
+.table-bordered {
+  border: 1px solid #e8e8e8;
+  background: #ffffff;
+}
+.table-bordered > thead > tr > th,
+.table-bordered > tbody > tr > th,
+.table-bordered > tfoot > tr > th,
+.table-bordered > thead > tr > td,
+.table-bordered > tbody > tr > td,
+.table-bordered > tfoot > tr > td {
+  border: 1px solid #e8e8e8;
+}
+.table-bordered > thead > tr > th,
+.table-bordered > thead > tr > td {
+  border-bottom-width: 2px;
+}
+html {
+  height: 100%;
+}
+body {
+  font-family: Roboto, Arial, sans-serif;
+  background: #f4f4f4;
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+  position: relative;
+  padding-bottom: 80px;
+}
+body.home-page {
+  background: url(/assets/images/move-up-story-background.png);
+  background-size: cover;
+}
+body * {
+  font-weight: 100;
+  color: #7a8288;
+}
+body .container h1 {
+  font-size: 36px;
+  font-weight: 700;
+  color: #444;
+  text-align: center;
+  margin-top: 70px;
+}
+body .container h2 {
+  font-size: 24px;
+  font-weight: 700;
+  color: #444444;
+}
+body p.lead {
+  font-weight: 100;
+  font-size: 24px;
+  color: #666;
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 40px;
+}
+body section {
+  background: #ffffff;
+}
+section.header {
+  margin-top: 0;
+  background: #fff;
+}
+section.header .matching-score-logo img {
+  margin-top: 20px;
+  display: block;
+}
+section.header .top-navigation {
+  margin-top: 17px;
+  margin-right: 25px;
+}
+section.header .top-navigation li {
+  padding: 2px 15px;
+}
+section.header .top-navigation .btn-main {
+  border: 1px solid #d2e0ea;
+  border-radius: 4px;
+  margin-left: 10px;
+}
+section.header .vnw-logo {
+  margin: 10px 0;
+}
+section.footer {
+  margin-bottom: 0;
+  background: #f7f7f7;
+  border-bottom: 5px solid #0581c0;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+section.footer .logo-vnw-gray,
+section.footer .logo-techlooper-gray {
+  padding: 10px 20px;
+  border-right: 1px solid #c2cfd8;
+  height: 75px;
+}
+section.footer .logo-techlooper-gray img {
+  margin-top: 5px;
+}
+section.footer .copyright {
+  margin-top: 18px;
+  margin-left: 10px;
+}
+section.footer .copyright .lead {
+  margin-bottom: 0;
+  font-weight: bold;
+  font-size: 18px;
+  text-align: left;
+}
