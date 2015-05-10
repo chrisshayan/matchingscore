@@ -15,23 +15,14 @@ initializeMatchingScores = function(period){
 			);
         if(result.statusCode == 200){
             var content = JSON.parse(result.content);
-            //if(content.data && content.data.total > 0){
-                var runDate = new Date();
-                _.each(content.data, function(industry){
-
-                    // Get industry statistic data for importing into database                    
-                    var industryData = industry;
-                    industryData.updateDate = runDate;
-                    industryData.industryId = Number(industry.industryid);
-                    industryData.minMatchingScore = Number(industry.minMatchingScore);
-                    industryData.maxMatchingScore = Number(industry.maxMatchingScore);
-                    industryData.avgMatchingScore = Number(industry.avgMatchingScore);
-                    industryData.countMatchingScore = Number(industry.countMatchingScore);
-
-                    //Insert statistic matching score for every industry into database
-                    MatchingScores.insert(industryData);                 
-                });
-            //}
+            var runDate = new Date();
+            _.each(content.data, function(industry){
+                // Insert Matching Scores of all cities in the beginning
+                var cityId = -1;  // All locations     
+                var industryData = insertMatchingScore(industry, runDate, cityId); 
+                console.log('Fixture Insert');
+                console.log(industryData);          
+            });
         }
 	} catch(event){
 		console.log(event);
