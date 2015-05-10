@@ -1,5 +1,5 @@
 Template.matchingScoresList.helpers({
 	matchingScores: function(){
-		return MatchingScores.find({}, { sort: { avgMatchingScore: -1 } });
+		return MatchingScores.find({ cityId: -1 }, { sort: { avgMatchingScore: -1 } });
 	}
 });
