@@ -1,0 +1,57 @@
+/* CSS declarations go here */
+html{ height:100% }
+body{ font-family:Roboto, Arial, sans-serif; background:#eee; margin:0; color:#666666; padding:0; min-height:100%; position:relative; padding-bottom:80px;
+  &.home-page{background-size:cover; }
+  //	*{ font-weight:100; color:#7a8288 }
+  .container h1{ font-size:42px; font-weight:300; color:#00b9f2; text-align:center; margin-top:50px; }
+  .container h2{ font-size:24px; font-weight:700; color:#444 }
+  p.lead{ font-weight:100; font-size:24px; color:#666; text-align:center; margin-top:0; margin-bottom:40px; }
+}
+a {color: #333; text-decoration: none}
+a:hover {color: #f7941d; text-decoration: none}
+section {margin: 20px auto; clear: both; overflow: hidden;}
+.circle {
+  border-radius: 50%; display: block; width: 140px; height:140px; padding-top:40px; background: #fff; border: 2px #ccc solid; margin: 0 auto;
+  strong {font-size: 18px}
+}
+.table-bordered {
+  border: 1px solid #e8e8e8;
+  background: #ffffff;
+}
+.table-bordered > thead > tr > th,
+.table-bordered > tbody > tr > th,
+.table-bordered > tfoot > tr > th,
+.table-bordered > thead > tr > td,
+.table-bordered > tbody > tr > td,
+.table-bordered > tfoot > tr > td {
+  border: 1px solid #e8e8e8;
+}
+.table-bordered > thead > tr > th,
+.table-bordered > thead > tr > td {
+  border-bottom-width: 2px; background: #555; color: #fff;
+}
+// General
+//====================================
+// Header
+//====================================
+// Logo
+section.header{ margin-top:0; background:#fff; border-bottom: 1px #e2e2e2 solid;
+	.matching-score-logo img{ margin-top:20px; display:block; }
+
+	.top-navigation{ margin-top:17px; margin-right:25px;
+		li{ padding:2px 15px }
+		.btn-main{ border:1px solid #d2e0ea; border-radius:4px; margin-left:10px; }
+	}
+
+	.vnw-logo{ margin:10px 0 }
+}
+// Footer
+section.footer{ margin-bottom:0;
+	background:#f7f7f7; border-top: 1px #e2e2e2 solid; border-bottom:5px solid #00b9f2; position:absolute; bottom:0; width:100%;
+	.logo-vnw-gray, .logo-techlooper-gray{ padding:10px 20px; border-right:1px solid #c2cfd8; height:75px }
+	.logo-techlooper-gray img{ margin-top:5px; }
+	.copyright{
+		margin-top:18px; margin-left:10px;
+		.lead{ margin-bottom:0; font-weight:bold; font-size:18px; text-align:left; }
+	}
+}

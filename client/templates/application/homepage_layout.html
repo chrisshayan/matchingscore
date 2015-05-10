@@ -1,16 +1,14 @@
 <template name="homepageLayout">
-	<div class="container-fluid">
-		{{> header}}
-	</div>
+    {{> header}}
+
 	<div class="container">
 		<div id="main" class="row-fluid">
 			<div class="main-content container">
-				<div class="jumbotron">
 					<h1 class="text-center">See Matching Score !</h1>
-					{{> criteria}}
-				</div>
-				{{> matchingScoresList}}
+                    {{> criteria}}
+                {{> matchingScoresList}}
 			</div>
 		</div>
 	</div>
+    {{> footer}}
 </template>

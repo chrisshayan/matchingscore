@@ -1,10 +1,31 @@
 <template name="criteria">
 	<section class="criteria">
+		<section class="time text-center">
+			<span class="circle">Within<br/>
+				<strong>5 Minutes</strong></span>
+		</section>
 		<form>
-			<div class="time">
-				<h2>Within</h2>
-				<a href="#" class="circle">30 Seconds</a>
-			</div>
+			<section>
+				<div class="col-sm-10 col-sm-push-1">
+					<div class="row">
+						<div class="col-sm-6">
+							<select class="form-control input-lg">
+								<option>Select Location</option>
+								<option>Ho Chi Minh</option>
+								<option>Ha Noi</option>
+							</select>
+						</div>
+						<div class="col-sm-6">
+							<select class="form-control input-lg">
+								<option>Select Job Level</option>
+								<option>Manager</option>
+								<option>Non-Manager</option>
+							</select>
+						</div>
+					</div>
+				</div>
+			</section>
+
 		</form>
 	</section>
 </template>
