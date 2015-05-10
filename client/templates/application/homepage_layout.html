@@ -1,14 +1,51 @@
 <template name="homepageLayout">
-    {{> header}}
+	{{> header}}
 
 	<div class="container">
 		<div id="main" class="row-fluid">
 			<div class="main-content container">
-					<h1 class="text-center">See Matching Score !</h1>
-                    {{> criteria}}
-                {{> matchingScoresList}}
+				<h1 class="text-center">See Matching Score !</h1>
+				{{> criteria}} {{> matchingScoresList}}
+				<section class="quick-search well">
+					<div class="row">
+						<div class="col-sm-12">
+							<div class="row">
+								<div class="col-sm-2 text-right">
+									<strong>Quick Search</strong>
+								</div>
+								<div class="col-sm-4">
+									<select class="form-control">
+										<option>Select Location</option>
+										<option>Ho Chi Minh</option>
+										<option>Ha Noi</option>
+									</select>
+								</div>
+								<div class="col-sm-4">
+									<select class="form-control">
+										<option>Select Job Level</option>
+										<option>Manager</option>
+										<option>Non-Manager</option>
+									</select>
+								</div>
+								<div class="col-sm-2">
+									<input type="button" class="btn btn-primary btn-block" value="Show Me" id="btn-show-me"/>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-12">
+						<div class="score text-center"><span class="circle">Min<br/> <strong>200</strong></span>  <span class="circle">Average<br/><strong>300</strong></span><span class="circle">Max<br/><strong>600</strong></span></div>
+						</div>
+						</div>
+				</section>
+
+				<section class="buy-service center-block text-center">
+					<span><input type="button" class="btn btn-lg btn-default" value="Buy Now" id="btn-buy-now"/></span>
+					<span class="call-back"><a href="#" id="call-me-back"><i class="fa fa-fw fa-phone"></i> Call Me Back</a></span>
+				</section>
 			</div>
 		</div>
 	</div>
-    {{> footer}}
+	{{> footer}}
 </template>
