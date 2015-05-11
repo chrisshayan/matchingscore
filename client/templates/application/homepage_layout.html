@@ -15,20 +15,20 @@
 								</div>
 								<div class="col-sm-4">
 									<select class="form-control">
+										<option>Select Category</option>
+										<option>Accounting</option>
+										<option>Arts/Design</option>
+									</select>
+								</div>
+								<div class="col-sm-4">
+									<select class="form-control">
 										<option>Select Location</option>
 										<option>Ho Chi Minh</option>
 										<option>Ha Noi</option>
 									</select>
 								</div>
-								<div class="col-sm-4">
-									<select class="form-control">
-										<option>Select Job Level</option>
-										<option>Manager</option>
-										<option>Non-Manager</option>
-									</select>
-								</div>
 								<div class="col-sm-2">
-									<input type="button" class="btn btn-primary btn-block" value="Show Me" id="btn-show-me"/>
+									<input type="button" class="btn btn-default btn-block" value="Show Me" id="btn-show-me"/>
 								</div>
 							</div>
 						</div>
@@ -40,6 +40,11 @@
 					</div>
 				</section>
                 {{>buyService}}
+                <section class="share text-center">
+					<br/>
+						<em>Chia sẻ:</em>
+						<!--{{>shareit shareData}}-->
+				</section>
 			</div>
 		</div>
 	</div>

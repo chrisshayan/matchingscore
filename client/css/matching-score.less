@@ -1,17 +1,20 @@
-/* CSS declarations go here */
+/*Matching Score*/
+
 html{ height:100% }
-body{ font-family:Roboto, Arial, sans-serif; background:#eee; margin:0; color:#666666; padding:0; min-height:100%; position:relative; padding-bottom:80px;
+body{ font-family:Roboto, Arial, sans-serif; background:#eee; margin:0; color:#666666; padding:0; min-height:100%; position:relative; padding-bottom:100px;
   &.home-page{background-size:cover; }
   //	*{ font-weight:100; color:#7a8288 }
-  .container h1{ font-size:42px; font-weight:300; color:#00b9f2; text-align:center; margin-top:50px; }
+  .container h1{ font-size:48px; font-weight:300; color:#00b9f2; text-align:center}
   .container h2{ font-size:24px; font-weight:700; color:#444 }
   a {color: #333; text-decoration: none}
   a:hover {color: #f7941d; text-decoration: none}
   p.lead{ font-weight:100; font-size:24px; color:#666; text-align:center; margin-top:0; margin-bottom:40px; }
 }
-
-.circle {border-radius: 50%; display: inline-block; width: 140px; height:140px; padding-top:40px; background: #fff; border: 2px #ccc solid; margin: 15px;
-  strong {font-size: 18px}
+section.quick-search {background: #e5e5e5;
+  strong {line-height: 30px}
+}
+.circle {border-radius: 50%; display: inline-block; width: 100px; height:100px; padding-top:25px; background: #fff; border: 1px #ccc solid; margin: 15px;
+  strong {font-size: 18px; color: #00b9f2}
 }
 .table-bordered {
   border: 1px solid #e8e8e8;
@@ -27,7 +30,7 @@ body{ font-family:Roboto, Arial, sans-serif; background:#eee; margin:0; color:#6
 }
 .table-bordered > thead > tr > th,
 .table-bordered > thead > tr > td {
-  border-bottom-width: 2px; background: #555; color: #fff;
+  border-bottom-width: 2px;
 }
 // General
 //====================================
@@ -46,7 +49,7 @@ section.header{ margin-top:0; background:#fff; border-bottom: 1px #e2e2e2 solid;
 	.vnw-logo{ margin:10px 0 }
 }
 // Footer
-section.footer{ margin-bottom:0;
+section.footer{ margin-bottom:0; bottom: 0;
 	background:#f7f7f7; border-top: 1px #e2e2e2 solid; border-bottom:5px solid #00b9f2; position:absolute; bottom:0; width:100%;
 	.logo-vnw-gray, .logo-techlooper-gray{ padding:10px 20px; border-right:1px solid #c2cfd8; height:75px }
 	.logo-techlooper-gray img{ margin-top:5px; }
