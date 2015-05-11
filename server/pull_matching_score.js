@@ -31,12 +31,12 @@ pullMatchingScores = function(cityId, period){
                         // Insert Matching Scores if not exists
                         var insertIndustryData = insertMatchingScore(industry, runDate, cityId);
                         console.log('Cron insert');
-                        console.log(industryData);
+                        console.log(insertIndustryData);
                     } else{
                         // Update Matching Scores if exists
                         var updateIndustryData = updateMatchingScore(industry, runDate, cityId);
                         console.log('Cron update');
-                        console.log(industryData);
+                        console.log(insertIndustryData);
                     }
                 });
         }

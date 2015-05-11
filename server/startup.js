@@ -1,4 +1,6 @@
 Meteor.startup(function(){
+	// Initialize Master Data
+	pullMasterData();
 
 	// Initialize data for matching score
 	if(MatchingScores.find().count() == 0){
