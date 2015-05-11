@@ -1,11 +1,11 @@
 <template name="homepageLayout">
-	{{> header}}
+    {{> header}}
 
 	<div class="container">
 		<div id="main" class="row-fluid">
 			<div class="main-content container">
 				<h1 class="text-center">See Matching Score !</h1>
-				{{> criteria}} {{> matchingScoresList}}
+                {{> criteria}} {{> matchingScoresList}}
 				<section class="quick-search well">
 					<div class="row">
 						<div class="col-sm-12">
@@ -35,17 +35,13 @@
 					</div>
 					<div class="row">
 						<div class="col-sm-12">
-						<div class="score text-center"><span class="circle">Min<br/> <strong>200</strong></span>  <span class="circle">Average<br/><strong>300</strong></span><span class="circle">Max<br/><strong>600</strong></span></div>
+							<div class="score text-center"><span class="circle">Min<br/> <strong>200</strong></span> <span class="circle">Average<br/><strong>300</strong></span><span class="circle">Max<br/><strong>600</strong></span></div>
 						</div>
-						</div>
+					</div>
 				</section>
-
-				<section class="buy-service center-block text-center">
-					<span><input type="button" class="btn btn-lg btn-default" value="Buy Now" id="btn-buy-now"/></span>
-					<span class="call-back"><a href="#" id="call-me-back"><i class="fa fa-fw fa-phone"></i> Call Me Back</a></span>
-				</section>
+                {{>buyService}}
 			</div>
 		</div>
 	</div>
-	{{> footer}}
+    {{> footer}}
 </template>
