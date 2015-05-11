@@ -4,7 +4,6 @@
 	<div class="container">
 		<div id="main" class="row-fluid">
 			<div class="main-content container">
-				<h1 class="text-center">See Matching Score !</h1>
 				{{> criteria}} {{> matchingScoresList}}
 				<section class="quick-search well">
 					<div class="row">
@@ -15,20 +14,20 @@
 								</div>
 								<div class="col-sm-4">
 									<select class="form-control">
+										<option>Select Category</option>
+										<option>Accounting</option>
+										<option>Arts/Design</option>
+									</select>
+								</div>
+								<div class="col-sm-4">
+									<select class="form-control">
 										<option>Select Location</option>
 										<option>Ho Chi Minh</option>
 										<option>Ha Noi</option>
 									</select>
 								</div>
-								<div class="col-sm-4">
-									<select class="form-control">
-										<option>Select Job Level</option>
-										<option>Manager</option>
-										<option>Non-Manager</option>
-									</select>
-								</div>
 								<div class="col-sm-2">
-									<input type="button" class="btn btn-primary btn-block" value="Show Me" id="btn-show-me"/>
+									<input type="button" class="btn btn-default btn-block" value="Show Me" id="btn-show-me"/>
 								</div>
 							</div>
 						</div>
@@ -40,9 +39,26 @@
 						</div>
 				</section>
 
-				<section class="buy-service center-block text-center">
-					<span><input type="button" class="btn btn-lg btn-default" value="Buy Now" id="btn-buy-now"/></span>
-					<span class="call-back"><a href="#" id="call-me-back"><i class="fa fa-fw fa-phone"></i> Call Me Back</a></span>
+				<section class="buy-service text-center">
+					<div class="row">
+						<div class="col-sm-8 col-sm-push-2">
+							<h3>Real-Time Job Matching cung cấp các cơ hội việc làm phù hợp nhất mà bạn không cần phải tìm kiếm.</h3>
+							<p>Đăng nhập tài khoản VietnamWorks của bạn và Move Up ngay hôm nay!</p>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-6 col-sm-push-3">
+							<div class="col-sm-6"><span><input type="button" class="btn btn-block btn-lg btn-primary" value="Buy Now" id="btn-buy-now"/></span></div>
+							<div class="col-sm-6">
+								<span><input type="button" class="btn btn-block btn-lg btn-default" value="Call Me Back" id="btn-call-me-back"/></span>
+							</div>
+						</div>
+					</div>
+				</section>
+				<section class="share text-center">
+					<br/>
+						<em>Chia sẻ:</em>
+						<!--{{>shareit shareData}}-->
 				</section>
 			</div>
 		</div>
