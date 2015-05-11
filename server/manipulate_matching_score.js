@@ -12,12 +12,13 @@ insertMatchingScore = function(industry, runDate, cityId){
   industryData.countMatchingScore = Number(industry.countMatchingScore);
 
   industryData = _.omit(industryData, 'industryid');
+  industryData = _.omit(industryData, 'cityid');
 
   //Insert statistic matching score for every industry into database
   return MatchingScores.insert(industryData); 
   //console.log('insert');
   //console.log(industryData);
-}
+};
 
 // Function update data of matching score
 updateMatchingScore = function(industry, runDate, cityId){
@@ -48,4 +49,4 @@ updateMatchingScore = function(industry, runDate, cityId){
       }
     }
   );
-}
+};
