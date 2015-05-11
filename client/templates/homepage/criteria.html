@@ -4,13 +4,14 @@
 		<div class="time text-center">
 			<span>Within <strong>30 Seconds</strong></span>
 		</div>
-		<form>
+		<form class="selectLocation">
 			<section>
 				<div class="col-sm-6 col-sm-push-3">
-					<select class="form-control input-lg">
+					<select id="selectedLocation" class="form-control input-lg">
 						<option>Select Location</option>
-						<option>Ho Chi Minh</option>
-						<option>Ha Noi</option>
+                        <option value=-1>All</option>
+						<option value=29>Ho Chi Minh</option>
+						<option value=24>Ha Noi</option>
 					</select>
 				</div>
 			</section>

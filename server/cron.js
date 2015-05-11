@@ -30,11 +30,11 @@ SyncedCron.add({
 		pullMatchingScores(cityId, period);
 
 		// Get matching cores for Ha Noi
-		cityId = 29;
+		cityId = 24;
 		pullMatchingScores(cityId, period);
 
 		// Get matching cores for Ho Chi Minh
-		cityId = 24;
+		cityId = 29;
 		pullMatchingScores(cityId, period);
 
 	}
