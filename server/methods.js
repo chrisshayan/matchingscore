@@ -1,0 +1,30 @@
+Meteor.methods({
+    // Quick Search Matching Score with Category & Location
+    quickSearch: function(searchConditions){
+        check(searchConditions, {
+            industryId: Number,
+            cityId: Number
+        });
+
+        // Define quick_search period of applications
+        var period = 43200; // 30 days
+        var apiName = "";
+        var parameters = "";
+        var searchResult;
+
+        //console.log(searchConditions.cityId);
+        apiName = "/industries/matching-score/?";
+        // Create quick_search parameters
+        // Validate Location
+        if(searchConditions.cityId > 0){
+            parameters += "cityId[]=" + searchConditions.cityId + '&';
+        }
+        // Validate Category
+        parameters += "industryId[]=" + searchConditions.industryId + "&period=" + period;
+
+        // Call API for getting result
+        searchResult = "calling method quickSearch.";
+        searchResult = callVietnamworksAPI(apiName, parameters);
+        return searchResult;
+    }
+});

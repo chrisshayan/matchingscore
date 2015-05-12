@@ -8,5 +8,5 @@ Meteor.publish('callmebackusers', function () {
 
 // Publish master categories data collection
 Meteor.publish('masterdata', function(){
-    return MasterData.find({ dataType: "categories" });
+    return MasterData.find();
 });
