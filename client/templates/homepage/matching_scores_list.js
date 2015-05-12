@@ -4,7 +4,7 @@ Template.matchingScoresList.helpers({
         if(isNaN(selectedLocation)){
             selectedLocation = -1;
         }
-        console.log(selectedLocation);
+        //console.log(selectedLocation);
 		return MatchingScores.find({ cityId: selectedLocation }, { sort: { avgMatchingScore: -1 } });
 	}
 });

@@ -4,40 +4,8 @@
 		<div id="main" class="row-fluid">
 			<div class="main-content container">
                 {{> criteria}} {{> matchingScoresList}}
-				<section class="quick-search well">
-					<div class="row">
-						<div class="col-sm-12">
-							<div class="row">
-								<div class="col-sm-2 text-right">
-									<strong>Quick Search</strong>
-								</div>
-								<div class="col-sm-4">
-									<select class="form-control">
-										<option>Select Category</option>
-										<option>Accounting</option>
-										<option>Arts/Design</option>
-									</select>
-								</div>
-								<div class="col-sm-4">
-									<select class="form-control">
-										<option>Select Location</option>
-										<option>Ho Chi Minh</option>
-										<option>Ha Noi</option>
-									</select>
-								</div>
-								<div class="col-sm-2">
-									<input type="button" class="btn btn-default btn-block" value="Show Me" id="btn-show-me"/>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-sm-12">
-							<div class="score text-center"><span class="circle">Min<br/> <strong>200</strong></span> <span class="circle">Average<br/><strong>300</strong></span><span class="circle">Max<br/><strong>600</strong></span></div>
-						</div>
-					</div>
-				</section>
-                {{>buyService}}
+				{{> quickSearch}}
+                {{> buyService}}
                 <section class="share text-center">
 					<br/>
 						<em>Chia sẻ:</em>

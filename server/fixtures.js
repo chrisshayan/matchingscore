@@ -5,7 +5,6 @@ initializeMatchingScores = function(period){
 	// Get matching score for all locations
 	var cityId = -1; // all cities
 	pullMatchingScores(cityId, period);
-
 	// Get matching cores for Ha Noi
 	cityId = 24;
 	pullMatchingScores(cityId, period);

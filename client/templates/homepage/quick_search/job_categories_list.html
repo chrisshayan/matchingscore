@@ -1,0 +1,10 @@
+<template name="jobCategoriesList">
+    <div class="col-sm-4">
+        <select id="selectSearchCategory" class="form-control">
+            <option value=-1>Select Category</option>
+            {{#each categoriesList}}
+                {{> jobCategory}}
+            {{/each}}
+        </select>
+    </div>
+</template>
