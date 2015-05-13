@@ -22,5 +22,14 @@ Template.quickSearchResult.helpers({
         } else{
             return 0;
         }
+    },
+    'countMatchingScore': function(){
+        var searchResult =  Session.get('searchResult');
+        if(searchResult){
+            return searchResult[0].countMatchingScore;
+        } else{
+            return 0;
+        }
+
     }
 });
