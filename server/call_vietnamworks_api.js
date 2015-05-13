@@ -1,6 +1,6 @@
 callVietnamworksAPI = function(apiName, parameters){
     // Consumer Key for calling Vietnamworks API
-    var md5 = "4d9101496b14d5700ec07090e82bc3c586ad16da48c05ad7c61d17e9bee0d9b5";
+    var md5 = "5f6e4e512b178398de4ae966cbf4246777b1aae284698eb1faa55f6121c131f7";
     // API Link
     var url = "https://api-staging.vietnamworks.com";
 
