@@ -1,27 +1,44 @@
-Template.quickSearch.events({
-    'click #btn-show-me': function(){
-        var industryId;
-        var cityId;
-        var searchConditions;
+Template.quickSearch.onCreated(function () {
+    var instance = this;
 
-        industryId = Number($('#selectSearchCategory').val());
-        if(industryId < 0){
+    instance.selectedLocation = new ReactiveVar(-1);
+    instance.selectedIndustry = new ReactiveVar(-1);
+
+    instance.autorun(function (){
+        var selectedLocation = instance.selectedLocation.get();
+        var selectedIndustry = instance.selectedIndustry.get();
+        var subscription = instance.subscribe('msquicksearch', selectedLocation, selectedIndustry);
+        //console.log('subscribe msquicksearch:' + selectedLocation + ", selectedIndustry " + selectedIndustry + "\n\n");
+        if (subscription.ready()){
+            console.log("> Received matchingscore for cityId " + selectedLocation + ", selectedIndustry " + selectedIndustry + "\n\n");
+        } else {
+            console.log("> Receiving matchingscore for cityId " + selectedLocation + ", selectedIndustry " + selectedIndustry + "\n\n");
+        }
+    });
+});
+
+Template.quickSearch.helpers({
+    resultMatchingScores: function (){
+        Session.set('searchResult', MatchingScores.findOne({cityId: Session.get('quickSearchLocation'), industryId: Session.get('quickSearchIndustry')}));
+    }
+});
+
+Template.quickSearch.events({
+    'click #btn-show-me': function(event, instance){
+        var selectedLocation = instance.selectedLocation.get();
+        var selectedIndustry = instance.selectedIndustry.get();
+
+        selectedIndustry = Number($('#selectSearchCategory').val());
+        if(selectedIndustry < 0){
             return alert('Please choose one Job Category');
         }
+        instance.selectedIndustry.set(selectedIndustry);
 
-        cityId = Number($('#selectSearchLocation').val());
-        searchConditions = {
-            industryId: industryId,
-            cityId: cityId
-        };
+        selectedLocation = Number($('#selectSearchLocation').val());
+        instance.selectedLocation.set(selectedLocation);
 
-        Meteor.call('quickSearch', searchConditions, function(error, searchResult){
-            // display the error to the user and abort
-            if(error){
-                return alert(error.reason);
-            }
-            Session.set('searchResult', searchResult);
-        });
         Session.set('isQuickSearchClicked', true);
+        Session.set('quickSearchLocation', selectedLocation);
+        Session.set('quickSearchIndustry', selectedIndustry);
     }
 });
