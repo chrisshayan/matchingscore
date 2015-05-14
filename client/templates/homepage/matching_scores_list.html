@@ -5,7 +5,7 @@
 			<section>
 				<div class="col-sm-6 col-sm-push-3">
 					<select id="selectedLocation" class="form-control input-lg">
-                        <option value=-1>Tất cả địa điểm</option>
+						<option value=-1>Tất cả địa điểm</option>
 						<option value=29>TP. Hồ Chí Minh</option>
 						<option value=24>Hà Nội</option>
 					</select>
@@ -24,15 +24,21 @@
 					<th>Tổng cộng</th>
 				</tr>
 			</thead>
-			{{#if Template.subscriptionsReady}}
+            {{#if Template.subscriptionsReady}}
 				<tbody class="matching-scores">
-					{{#each matchingScores}}
-						{{> matchingScore}}
-					{{/each}}
+                    {{#each matchingScores}}
+                        {{> matchingScore}}
+                    {{/each}}
 				</tbody>
-			{{else}}
-				<div class="loading">{{>spinner}}</div>
-			{{/if}}
+            {{else}}
+				<tbody class="matching-scores">
+					<tr>
+						<td colspan="5">
+							<div class="loader-wrapper">{{>spinner}}</div>
+						</td>
+					</tr>
+				</tbody>
+            {{/if}}
 		</table>
 	</section>
 </template>
