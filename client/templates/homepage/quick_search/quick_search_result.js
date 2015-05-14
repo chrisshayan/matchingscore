@@ -1,4 +1,11 @@
 Template.quickSearchResult.helpers({
+    'isHavingResult': function(){
+        if(Session.get('searchResult') === undefined & Session.get('isQuickSearchClicked') == true){
+            return true;
+        } else {
+            return false;
+        }
+    },
     'minMatchingScore': function(){
         var searchResult =  Session.get('searchResult');
         if(searchResult){

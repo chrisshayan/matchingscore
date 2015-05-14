@@ -22,5 +22,6 @@ Template.quickSearch.events({
             }
             Session.set('searchResult', searchResult);
         });
+        Session.set('isQuickSearchClicked', true);
     }
 });
