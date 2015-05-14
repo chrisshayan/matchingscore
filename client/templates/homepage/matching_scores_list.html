@@ -1,4 +1,18 @@
 <template name="matchingScoresList">
+	<section class="criteria">
+		<h1 class="text-center">Xem Thống Kê MatchingScore</h1>
+		<form class="selectLocation">
+			<section>
+				<div class="col-sm-6 col-sm-push-3">
+					<select id="selectedLocation" class="form-control input-lg">
+                        <option value=-1>Tất cả địa điểm</option>
+						<option value=29>TP. Hồ Chí Minh</option>
+						<option value=24>Hà Nội</option>
+					</select>
+				</div>
+			</section>
+		</form>
+	</section>
 	<section class="matching-score-list">
 		<table class="table table-bordered">
 			<thead>
@@ -10,11 +24,15 @@
 					<th>Tổng cộng</th>
 				</tr>
 			</thead>
-			<tbody class="matching-scores">
-				{{#each matchingScores}}
-					{{> matchingScore}}
-				{{/each}}
-			</tbody>
+			{{#if Template.subscriptionsReady}}
+				<tbody class="matching-scores">
+					{{#each matchingScores}}
+						{{> matchingScore}}
+					{{/each}}
+				</tbody>
+			{{else}}
+				<div class="loading">{{>spinner}}</div>
+			{{/if}}
 		</table>
 	</section>
 </template>
