@@ -19,7 +19,27 @@ Template.quickSearch.onCreated(function () {
 
 Template.quickSearch.helpers({
     resultMatchingScores: function (){
-        Session.set('searchResult', MatchingScores.findOne({cityId: Session.get('quickSearchLocation'), industryId: Session.get('quickSearchIndustry')}));
+        searchLocation = parseInt(Session.get('quickSearchLocation'));
+        searchIndustry = parseInt(Session.get('quickSearchIndustry'));
+
+        if (searchIndustry == -1){
+            return undefined;
+        }
+
+        searchConditions = {
+            industryId: searchIndustry,
+            cityId: searchLocation
+        };
+
+        searchResult = MatchingScores.findOne({cityId: searchLocation, industryId: searchIndustry});
+        if (isNaN(searchResult) & Session.get('isQuickSearchClicked')){
+            searchResult = Meteor.call('quickSearch', searchConditions, function(error, searchResult){
+                Session.set('searchCallBack', true);
+                Session.set('searchResult', searchResult);
+            });
+        } else {
+            Session.set('searchResult', searchResult);
+        }
     }
 });
 
