@@ -68,3 +68,11 @@ pullSearchMatchingScore = function(city){
     pullMatchingScores(city, period);
   }
 };
+
+getSearchMatchingScore = function(city, industry){
+  debuger('[Quick Search] Extend update cron - C ' + city);
+  extendCurrentViewCity(city);
+
+  debuger('[Quick Search] Return Search Result: I' + industry + ' - C ' + city, 2);
+  return MatchingScores.find({cityId: city, industryId: industry});
+}
