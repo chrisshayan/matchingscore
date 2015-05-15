@@ -1,0 +1,10 @@
+{
+	"private": {
+		"apiConsumerKey": "",
+		"apiUrl": "",
+		"cronJobPeriod": "every 2 minutes",
+		"matchingScorePullPeriod": 43200,
+		"debug": false,
+		"debugLevel": 1
+	}
+}
