@@ -7,12 +7,15 @@ Template.quickSearch.onCreated(function () {
     instance.autorun(function (){
         var selectedLocation = instance.selectedLocation.get();
         var selectedIndustry = instance.selectedIndustry.get();
-        var subscription = instance.subscribe('msquicksearch', selectedLocation, selectedIndustry);
-        //console.log('subscribe msquicksearch:' + selectedLocation + ", selectedIndustry " + selectedIndustry + "\n\n");
-        if (subscription.ready()){
-            console.log("> Received matchingscore for cityId " + selectedLocation + ", selectedIndustry " + selectedIndustry + "\n\n");
-        } else {
-            console.log("> Receiving matchingscore for cityId " + selectedLocation + ", selectedIndustry " + selectedIndustry + "\n\n");
+        
+        if(parseInt(selectedIndustry) !== -1){
+            var subscription = instance.subscribe('msquicksearch', selectedLocation, selectedIndustry);
+
+            if (subscription.ready()){
+                console.log("> Received matchingscore for cityId " + selectedLocation + ", selectedIndustry " + selectedIndustry + "\n\n");
+            } else {
+                console.log("> Receiving matchingscore for cityId " + selectedLocation + ", selectedIndustry " + selectedIndustry + "\n\n");
+            }
         }
     });
 });
@@ -26,20 +29,8 @@ Template.quickSearch.helpers({
             return undefined;
         }
 
-        searchConditions = {
-            industryId: searchIndustry,
-            cityId: searchLocation
-        };
-
         searchResult = MatchingScores.findOne({cityId: searchLocation, industryId: searchIndustry});
-        if (isNaN(searchResult) & Session.get('isQuickSearchClicked')){
-            searchResult = Meteor.call('quickSearch', searchConditions, function(error, searchResult){
-                Session.set('searchCallBack', true);
-                Session.set('searchResult', searchResult);
-            });
-        } else {
-            Session.set('searchResult', searchResult);
-        }
+        Session.set('searchResult', searchResult);
     }
 });
 
