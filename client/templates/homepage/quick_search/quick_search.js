@@ -16,6 +16,10 @@ Template.quickSearch.onCreated(function () {
             } else {
                 console.log("> Receiving matchingscore for cityId " + selectedLocation + ", selectedIndustry " + selectedIndustry + "\n\n");
             }
+
+            Session.set("qsNoIndustry", false);
+        } else {
+            Session.set("qsNoIndustry", true);
         }
     });
 });
@@ -40,9 +44,9 @@ Template.quickSearch.events({
         var selectedIndustry = instance.selectedIndustry.get();
 
         selectedIndustry = Number($('#selectSearchCategory').val());
-        if(selectedIndustry < 0){
-            return alert('Please choose one Job Category');
-        }
+        //if(selectedIndustry < 0){
+        //    return alert('Please choose one Job Category');
+        //}
         instance.selectedIndustry.set(selectedIndustry);
 
         selectedLocation = Number($('#selectSearchLocation').val());
