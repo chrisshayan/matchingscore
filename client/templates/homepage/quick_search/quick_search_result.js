@@ -9,7 +9,10 @@ Template.quickSearchResult.helpers({
     'minMatchingScore': function(){
         var searchResult =  Session.get('searchResult');
         if(searchResult){
-            return searchResult[0].minMatchingScore;
+            if(Session.get('searchCallBack')){
+                return searchResult[0].minMatchingScore;
+            }
+            return searchResult.minMatchingScore;
         } else{
             return 0;
         }
@@ -17,7 +20,10 @@ Template.quickSearchResult.helpers({
     'maxMatchingScore': function(){
         var searchResult =  Session.get('searchResult');
         if(searchResult){
-            return searchResult[0].maxMatchingScore;
+            if(Session.get('searchCallBack')){
+                return searchResult[0].maxMatchingScore;
+            }
+            return searchResult.maxMatchingScore;
         } else{
             return 0;
         }
@@ -25,7 +31,10 @@ Template.quickSearchResult.helpers({
     'avgMatchingScore': function(){
         var searchResult =  Session.get('searchResult');
         if(searchResult){
-            return searchResult[0].avgMatchingScore;
+            if(Session.get('searchCallBack')){
+                return searchResult[0].avgMatchingScore;
+            }
+            return searchResult.avgMatchingScore;
         } else{
             return 0;
         }
@@ -33,7 +42,10 @@ Template.quickSearchResult.helpers({
     'countMatchingScore': function(){
         var searchResult =  Session.get('searchResult');
         if(searchResult){
-            return searchResult[0].countMatchingScore;
+            if(Session.get('searchCallBack')){
+                return searchResult[0].countMatchingScore;
+            }
+            return searchResult.countMatchingScore;
         } else{
             return 0;
         }

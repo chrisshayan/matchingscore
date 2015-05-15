@@ -15,7 +15,12 @@
                     </div>
                 </div>
             </div>
-            {{> quickSearchResult}}
+            {{#if Template.subscriptionsReady}}
+                {{resultMatchingScores}}
+                {{> quickSearchResult}}
+            {{else}}
+                Loading...
+            {{/if}}
         </section>
     </form>
 </template>
