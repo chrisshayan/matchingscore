@@ -2,14 +2,14 @@ callVietnamworksAPI = function(apiName, parameters){
     // Consumer Key for calling Vietnamworks API
     var md5 = "5f6e4e512b178398de4ae966cbf4246777b1aae284698eb1faa55f6121c131f7";
     // API Link
-    var url = "https://api-staging.vietnamworks.com";
+    var url = Meteor.settings.private.apiUrl;
 
     // URL for calling MatchingScore API
     url += apiName;
 
     // Complete API URL
     url += parameters;
-    //console.log(url);
+    //debuger(url);
     try{
         var result = HTTP.get(
             url,
@@ -17,7 +17,7 @@ callVietnamworksAPI = function(apiName, parameters){
                 headers: {
                     "Content-type": "application/json",
                     "Accept": "application/json",
-                    "Content-md5": md5
+                    "Content-md5": Meteor.settings.private.apiConsumerKey
                 }
             }
         );
@@ -26,6 +26,6 @@ callVietnamworksAPI = function(apiName, parameters){
             return content.data;
         }
     } catch(event){
-        console.log(event);
+        debuger(event, 2);
     }
 };

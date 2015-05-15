@@ -17,13 +17,11 @@ pullMatchingScores = function(cityId, period){
         if(MatchingScores.find({ industryId: Number(industry.industryid), cityId: Number(cityId) }).count() == 0){
             // Insert Matching Scores if not exists
             var insertIndustryData = insertMatchingScore(industry, runDate, cityId);
-            console.log('Cron insert');
-            console.log(insertIndustryData);
+            debuger('Cron insert: I ' + industry + ' C '+ cityId);
         } else{
             // Update Matching Scores if exists
             var updateIndustryData = updateMatchingScore(industry, runDate, cityId);
-            console.log('Cron update');
-            console.log(insertIndustryData);
+            debuger('Cron update: I ' + industry + ' C '+ cityId);
         }
     });
 };

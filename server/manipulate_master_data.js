@@ -14,8 +14,7 @@ insertCategoriesData = function(categories){
 
     //Insert statistic matching score for every industry into database
     return MasterData.insert(categoriesData);
-    //console.log('insert');
-    //console.log(categoriesData);
+    debuger('Insert categories data');
 };
 
 // Function insert data for locations
@@ -34,6 +33,5 @@ insertLocationsData = function(locations){
 
     //Insert statistic matching score for every industry into database
     return MasterData.insert(locationsData);
-    //console.log('insert Locations');
-    //console.log(locationsData);
+    debuger('Insert locations data');
 };

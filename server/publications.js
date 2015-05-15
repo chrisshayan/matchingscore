@@ -23,22 +23,7 @@ Meteor.publish('msquicksearch', function (city, industry) {
 		insertCurrentViewCity(city);
 	}
 
-	//Check if data existent for searched city, if existed, check updated date.
-	searchResult = MatchingScores.findOne({cityId: city});
-	var period = 43200;
-	if (searchResult){
-		dataUpdatedOn = new Date(searchResult.updateDate);
-		console.log('Data updated on ' + dataUpdatedOn);
-
-		curDate = new Date();
-		if (dataUpdatedOn < curDate.setMinutes(curDate.getMinutes() - 2)){
-			console.log("Pull matching score for outdated city id " + city);
-			pullMatchingScores(city, period);
-		}
-	} else {
-		console.log("Pull matching score for city id " + city);
-		pullMatchingScores(city, period);
-	}
+	pullSearchMatchingScore(city);
 	
 	return MatchingScores.find({cityId: city, industryId: industry});
 });
