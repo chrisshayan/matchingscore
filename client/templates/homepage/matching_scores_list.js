@@ -1,4 +1,4 @@
-Template.matchingScoresList.onCreated(function () {
+/*Template.matchingScoresList.onCreated(function () {
 	var instance = this;
 
 	instance.selectedLocation = new ReactiveVar(-1);
@@ -13,7 +13,7 @@ Template.matchingScoresList.onCreated(function () {
 			console.log("> Receiving matchingscore for cityId " + selectedLocation + "\n\n");
 		}
 	});
-});
+});*/
 
 Template.matchingScoresList.helpers({
     matchingScores: function (){
@@ -21,16 +21,14 @@ Template.matchingScoresList.helpers({
     	if(isNaN(selectedLocation)){
     		selectedLocation = -1
     	}
-
+        selectedLocation = Number(selectedLocation);
     	return MatchingScores.find({cityId: selectedLocation}, { sort: { avgMatchingScore: -1 } });
 	}
 });
 
 Template.matchingScoresList.events({
-    "change #selectedLocation": function(event, instance){
-        var selectedLocation = instance.selectedLocation.get();
-        selectedLocation = $(event.target).find('option:selected').val();
-        instance.selectedLocation.set(selectedLocation);
+    "change #selectedLocation": function(event){
+        var selectedLocation = Number($(event.target).find('option:selected').val());
         Session.set('selectedLocation', selectedLocation);
     }
 });

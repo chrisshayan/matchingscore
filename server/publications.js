@@ -1,9 +1,20 @@
-Meteor.publish('matchingscores', function (city) {
+/*Meteor.publish('matchingscores', function (city) {
 	if(city == 'null' || city == 'undefined' || city == 0){
 		city = -1;
 	}
 	city = parseInt(city, 10);
     return MatchingScores.find({cityId: city});
+});*/
+
+Meteor.publish('matchingscores', function(options, selectedLocation){
+    check(options, {
+        sort: Object,
+        limit: Number
+    });
+    if(isNaN(selectedLocation)){
+        selectedLocation = -1;
+    }
+    return MatchingScores.find({ cityId: selectedLocation }, options);
 });
 
 Meteor.publish('msquicksearch', function (city, industry) {
