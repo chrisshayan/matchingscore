@@ -3,6 +3,7 @@ Template.quickSearch.onCreated(function () {
 
     instance.selectedLocation = new ReactiveVar(-1);
     instance.selectedIndustry = new ReactiveVar(-1);
+    instance.isQuickSearchClicked = false;
 
     instance.autorun(function (){
         var selectedLocation = instance.selectedLocation.get();
@@ -16,26 +17,33 @@ Template.quickSearch.onCreated(function () {
             } else {
                 console.log("> Receiving matchingscore for cityId " + selectedLocation + ", selectedIndustry " + selectedIndustry + "\n\n");
             }*/
-
-            Session.set("qsNoIndustry", false);
-        } else {
-            Session.set("qsNoIndustry", true);
         }
     });
 });
 
 Template.quickSearch.helpers({
     resultMatchingScores: function (){
-        searchLocation = Template.instance().selectedLocation.get();
-        searchIndustry = Template.instance().selectedIndustry.get();
+        var searchLocation = Template.instance().selectedLocation.get();
+        var searchIndustry = Template.instance().selectedIndustry.get();
 
-        if (searchIndustry == -1){
-            searchResult = undefined;
-        } else {
-            searchResult = MatchingScores.findOne({cityId: searchLocation, industryId: searchIndustry});
+        var searchResult = MatchingScores.findOne({cityId: searchLocation, industryId: searchIndustry});
+        if(searchResult === undefined){
+            if(Template.instance().isQuickSearchClicked &
+                Template.instance().ready){
+                throwError('Không có kết quả Matching Score theo điều kiện tìm kiếm!', 'alert-info');
+            }
+            
+            searchResult = {
+                minMatchingScore: 0,
+                maxMatchingScore: 0,
+                avgMatchingScore: 0,
+                countMatchingScore: 0
+            };
         }
 
-        Session.set('searchResult', searchResult);
+        searchResult._countMatchingScore = searchResult.countMatchingScore.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        Template.instance().isQuickSearchClicked = false;
+        return searchResult;
     }
 });
 
@@ -45,12 +53,15 @@ Template.quickSearch.events({
         var selectedLocation = instance.selectedLocation.get();
         var selectedIndustry = instance.selectedIndustry.get();
 
-        selectedIndustry = Number($('#selectSearchCategory').val());
+        selectedIndustry = parseInt($('#selectSearchCategory').val());
         instance.selectedIndustry.set(selectedIndustry);
 
-        selectedLocation = Number($('#selectSearchLocation').val());
+        selectedLocation = parseInt($('#selectSearchLocation').val());
         instance.selectedLocation.set(selectedLocation);
 
-        Session.set('isQuickSearchClicked', true);
+        if(selectedIndustry == -1){
+            throwError('Vui lòng chọn điều kiện tìm kiếm theo ngành nghề!', 'alert-warning');
+        }
+        instance.isQuickSearchClicked = true;
     }
 });
