@@ -30,10 +30,11 @@ Template.quickSearch.helpers({
         searchIndustry = parseInt(Session.get('quickSearchIndustry'));
 
         if (searchIndustry == -1){
-            return undefined;
+            searchResult = undefined;
+        } else {
+            searchResult = MatchingScores.findOne({cityId: searchLocation, industryId: searchIndustry});
         }
 
-        searchResult = MatchingScores.findOne({cityId: searchLocation, industryId: searchIndustry});
         Session.set('searchResult', searchResult);
     }
 });
