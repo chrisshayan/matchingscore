@@ -12,7 +12,7 @@ insertCategoryData = function(category){
     category = _.omit(category, 'lang_vn');
 
     //Insert statistic matching score for every industry into database
-    if(MasterData.find({dataType: "categories", categoryId: category.categoryId}).count() == 0){
+    if(MasterData.find({dataType: "category", categoryId: category.categoryId}).count() == 0){
         debuger('Insert category I ' + category.categoryId, 2);
         return MasterData.insert(category);
     } else {
@@ -34,7 +34,7 @@ insertLocationData = function(location){
     location = _.omit(location, 'lang_vn');
 
     //Insert statistic matching score for every industry into database
-    if(MasterData.find({dataType: "locations", locationId: location.locationId}).count() == 0){
+    if(MasterData.find({dataType: "location", locationId: location.locationId}).count() == 0){
         debuger('Insert location C ' + location.locationId, 2);
         return MasterData.insert(location);
     } else {
