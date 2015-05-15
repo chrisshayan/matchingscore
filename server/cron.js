@@ -17,8 +17,8 @@ SyncedCron.add({
 	name: 'Pull applications matching score from vietnamworks',
 	schedule: function(parser){
 		// parser is a later.parse object
-		return parser.text('every 2 minutes');
-		//return parser.text('every 30 seconds');
+		//return parser.text('every 2 minutes');
+		return parser.text('every 30 seconds');
 	},
 	job: function(){
 		// Call function for pulling data from API
@@ -37,5 +37,13 @@ SyncedCron.add({
 		cityId = 29;
 		pullMatchingScores(cityId, period);
 
+		var currentCities = CurrentViewCities.find({expiredOn: {$gt: new Date()}}).fetch();
+
+		_.each(currentCities, function(currentCity){
+			if(!(currentCity.cityId == -1 | currentCity.cityId == 24 | currentCity.cityId == 29)){
+				pullMatchingScores(currentCity.cityId, period);
+				console.log("Got matching score for location " + currentCity.cityId);
+			}
+		})
 	}
 });
