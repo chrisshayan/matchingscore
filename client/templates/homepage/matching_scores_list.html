@@ -40,6 +40,8 @@
 				</tbody>
             {{/if}}
 		</table>
-        {{> lastUpdated}}
+		{{#if Template.subscriptionsReady}}
+        	{{> lastUpdated}}
+        {{/if}}
 	</section>
 </template>
