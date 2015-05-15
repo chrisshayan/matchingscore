@@ -9,11 +9,11 @@ Template.matchingScoresList.onCreated(function () {
 		var selectedLocation = instance.selectedLocation.get();		
 		var subscription = instance.subscribe('matchingscores', selectedLocation);
 		
-		if (subscription.ready()){
+		/*if (subscription.ready()){
 			console.log("> Received matchingscore for cityId " + selectedLocation + "\n\n");
 		} else {
 			console.log("> Receiving matchingscore for cityId " + selectedLocation + "\n\n");
-		}
+		}*/
 	});
 });
 

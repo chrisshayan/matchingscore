@@ -11,11 +11,11 @@ Template.quickSearch.onCreated(function () {
         if(parseInt(selectedIndustry) !== -1){
             var subscription = instance.subscribe('msquicksearch', selectedLocation, selectedIndustry);
 
-            if (subscription.ready()){
+            /*if (subscription.ready()){
                 console.log("> Received matchingscore for cityId " + selectedLocation + ", selectedIndustry " + selectedIndustry + "\n\n");
             } else {
                 console.log("> Receiving matchingscore for cityId " + selectedLocation + ", selectedIndustry " + selectedIndustry + "\n\n");
-            }
+            }*/
 
             Session.set("qsNoIndustry", false);
         } else {
