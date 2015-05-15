@@ -12,7 +12,7 @@ Meteor.methods({
         var parameters = "";
         var searchResult;
 
-        //console.log(searchConditions.cityId);
+        //debuger(searchConditions.cityId);
         apiName = "/industries/matching-score/?";
         // Create quick_search parameters
         // Validate Location

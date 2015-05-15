@@ -7,12 +7,19 @@ Template.quickSearch.onCreated(function () {
     instance.autorun(function (){
         var selectedLocation = instance.selectedLocation.get();
         var selectedIndustry = instance.selectedIndustry.get();
-        var subscription = instance.subscribe('msquicksearch', selectedLocation, selectedIndustry);
-        //console.log('subscribe msquicksearch:' + selectedLocation + ", selectedIndustry " + selectedIndustry + "\n\n");
-        if (subscription.ready()){
-            console.log("> Received matchingscore for cityId " + selectedLocation + ", selectedIndustry " + selectedIndustry + "\n\n");
+        
+        if(parseInt(selectedIndustry) !== -1){
+            var subscription = instance.subscribe('msquicksearch', selectedLocation, selectedIndustry);
+
+            if (subscription.ready()){
+                console.log("> Received matchingscore for cityId " + selectedLocation + ", selectedIndustry " + selectedIndustry + "\n\n");
+            } else {
+                console.log("> Receiving matchingscore for cityId " + selectedLocation + ", selectedIndustry " + selectedIndustry + "\n\n");
+            }
+
+            Session.set("qsNoIndustry", false);
         } else {
-            console.log("> Receiving matchingscore for cityId " + selectedLocation + ", selectedIndustry " + selectedIndustry + "\n\n");
+            Session.set("qsNoIndustry", true);
         }
     });
 });
@@ -23,23 +30,12 @@ Template.quickSearch.helpers({
         searchIndustry = parseInt(Session.get('quickSearchIndustry'));
 
         if (searchIndustry == -1){
-            return undefined;
-        }
-
-        searchConditions = {
-            industryId: searchIndustry,
-            cityId: searchLocation
-        };
-
-        searchResult = MatchingScores.findOne({cityId: searchLocation, industryId: searchIndustry});
-        if (isNaN(searchResult) & Session.get('isQuickSearchClicked')){
-            searchResult = Meteor.call('quickSearch', searchConditions, function(error, searchResult){
-                Session.set('searchCallBack', true);
-                Session.set('searchResult', searchResult);
-            });
+            searchResult = undefined;
         } else {
-            Session.set('searchResult', searchResult);
+            searchResult = MatchingScores.findOne({cityId: searchLocation, industryId: searchIndustry});
         }
+
+        Session.set('searchResult', searchResult);
     }
 });
 
@@ -49,9 +45,9 @@ Template.quickSearch.events({
         var selectedIndustry = instance.selectedIndustry.get();
 
         selectedIndustry = Number($('#selectSearchCategory').val());
-        if(selectedIndustry < 0){
-            return alert('Please choose one Job Category');
-        }
+        //if(selectedIndustry < 0){
+        //    return alert('Please choose one Job Category');
+        //}
         instance.selectedIndustry.set(selectedIndustry);
 
         selectedLocation = Number($('#selectSearchLocation').val());

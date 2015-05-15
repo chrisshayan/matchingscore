@@ -1,17 +1,23 @@
 Template.quickSearchResult.helpers({
     'isHavingResult': function(){
-        if(Session.get('searchResult') === undefined & Session.get('isQuickSearchClicked') == true){
+        if(Session.get('searchResult') === undefined & Session.get('isQuickSearchClicked')){
             return true;
         } else {
             return false;
         }
     },
+    'showErrorMessage': function(){
+        if(Session.get('searchResult') === undefined & Session.get('isQuickSearchClicked')){
+            if(Session.get('qsNoIndustry')){
+                return 'Vui lòng chọn điều kiện tìm kiếm theo ngành nghề!';
+            }
+
+            return 'Không có kết quả Matching Score theo điều kiện tìm kiếm!';
+        }
+    },
     'minMatchingScore': function(){
         var searchResult =  Session.get('searchResult');
         if(searchResult){
-            if(Session.get('searchCallBack')){
-                return searchResult[0].minMatchingScore;
-            }
             return searchResult.minMatchingScore;
         } else{
             return 0;
@@ -20,9 +26,6 @@ Template.quickSearchResult.helpers({
     'maxMatchingScore': function(){
         var searchResult =  Session.get('searchResult');
         if(searchResult){
-            if(Session.get('searchCallBack')){
-                return searchResult[0].maxMatchingScore;
-            }
             return searchResult.maxMatchingScore;
         } else{
             return 0;
@@ -31,9 +34,6 @@ Template.quickSearchResult.helpers({
     'avgMatchingScore': function(){
         var searchResult =  Session.get('searchResult');
         if(searchResult){
-            if(Session.get('searchCallBack')){
-                return searchResult[0].avgMatchingScore;
-            }
             return searchResult.avgMatchingScore;
         } else{
             return 0;
@@ -42,9 +42,6 @@ Template.quickSearchResult.helpers({
     'countMatchingScore': function(){
         var searchResult =  Session.get('searchResult');
         if(searchResult){
-            if(Session.get('searchCallBack')){
-                return searchResult[0].countMatchingScore;
-            }
             return searchResult.countMatchingScore;
         } else{
             return 0;

@@ -17,12 +17,13 @@ Meteor.publish('msquicksearch', function (city, industry) {
 	}
 	industry = parseInt(industry, 10);
 
-	if(CurrentViewCities.find({cityId: city}).count() == 1) {
-		extendCurrentViewCity(city);
-	} else {
+	if(CurrentViewCities.find({cityId: city}).count() == 0) {
 		insertCurrentViewCity(city);
 	}
-	return MatchingScores.find({cityId: city, industryId: industry});
+
+	pullSearchMatchingScore(city);
+	
+	return getSearchMatchingScore(city, industry);
 });
 
 Meteor.publish('callmebackusers', function () {

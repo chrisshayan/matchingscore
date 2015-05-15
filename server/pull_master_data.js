@@ -7,13 +7,13 @@ pullMasterData = function(){
 
     // Get Categories Data
     _.each(data.categories, function(categories){
-        //console.log(content.data.categories);
+        //debuger(content.data.categories);
         insertCategoriesData(categories);
     });
 
     // Get Locations Data
     _.each(data.locations, function(locations){
-        //console.log(locations);
+        //debuger(locations);
         insertLocationsData(locations);
     });
 };

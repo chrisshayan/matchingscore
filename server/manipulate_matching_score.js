@@ -14,10 +14,10 @@ insertMatchingScore = function(industry, runDate, cityId){
   industryData = _.omit(industryData, 'industryid');
   industryData = _.omit(industryData, 'cityid');
 
+  debuger('Update Matching Scores: I ' + industryData.industryId + ' - C ' + industryData.cityId);
+  
   //Insert statistic matching score for every industry into database
   return MatchingScores.insert(industryData); 
-  //console.log('insert');
-  //console.log(industryData);
 };
 
 // Function update data of matching score
@@ -34,9 +34,8 @@ updateMatchingScore = function(industry, runDate, cityId){
   industryData.countMatchingScore = Number(industry.countMatchingScore);
 
 
-  console.log('Function Update MatchingScores');
-  console.log(industryData.industryId);
-  console.log(industryData.cityId);
+  debuger('Update Matching Scores: I ' + industryData.industryId + ' - C ' + industryData.cityId);
+
   //Update statistic matching score for every industry into database
   return MatchingScores.update(
     { industryId: industryData.industryId, cityId: industryData.cityId }, 
@@ -50,3 +49,30 @@ updateMatchingScore = function(industry, runDate, cityId){
     }
   );
 };
+
+//Check if data existent for searched city, if existed, check updated date.
+pullSearchMatchingScore = function(city){
+  var searchResult = MatchingScores.findOne({cityId: city});
+  var period = Meteor.settings.private.matchingScorePullPeriod;
+  if (searchResult){
+    dataUpdatedOn = new Date(searchResult.updateDate);
+    debuger('Data updated on ' + dataUpdatedOn + ' - C ' + city);
+
+    curDate = new Date();
+    if (dataUpdatedOn < curDate.setMinutes(curDate.getMinutes() - 2)){
+      debuger("[Outdated] Pull matching score - C " + city);
+      pullMatchingScores(city, period);
+    }
+  } else {
+    debuger("[New] Pull matching score - C " + city);
+    pullMatchingScores(city, period);
+  }
+};
+
+getSearchMatchingScore = function(city, industry){
+  debuger('[Quick Search] Extend update cron - C ' + city);
+  extendCurrentViewCity(city);
+
+  debuger('[Quick Search] Return Search Result: I' + industry + ' - C ' + city, 2);
+  return MatchingScores.find({cityId: city, industryId: industry});
+}

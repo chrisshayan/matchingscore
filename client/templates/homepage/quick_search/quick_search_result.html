@@ -5,7 +5,8 @@
                 {{#if isHavingResult}}
                     <br/>
                     <div class="alert alert-info" role="alert">
-                        Không có kết quả Matching Score theo điều kiện tìm!
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Đóng"><span aria-hidden="true">&times;</span></button>
+                        {{showErrorMessage}}
                     </div>
                 {{/if}}
                 <span class="circle">Thấp nhất<br/> <strong>{{minMatchingScore}}</strong></span>
