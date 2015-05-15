@@ -26,17 +26,21 @@ SyncedCron.add({
 		var period = Meteor.settings.private.matchingScorePullPeriod; // 30 days
 
 		// Get matching score for all locations
+		debuger('Get matching score for all locations...');
 		var cityId = -1; // all cities
 		pullMatchingScores(cityId, period);
 
 		// Get matching cores for Ha Noi
+		debuger('Get matching score for Ha Noi...');
 		cityId = 24;
 		pullMatchingScores(cityId, period);
 
 		// Get matching cores for Ho Chi Minh
+		debuger('Get matching score for Ho Chi Minh...');
 		cityId = 29;
 		pullMatchingScores(cityId, period);
 
+		debuger('Get matching score for current quick search locations...');
 		var currentCities = CurrentViewCities.find({expiredOn: {$gt: new Date()}}).fetch();
 
 		_.each(currentCities, function(currentCity){

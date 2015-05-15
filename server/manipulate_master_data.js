@@ -23,7 +23,7 @@ insertCategoryData = function(category){
 // Function insert data for Location
 insertLocationData = function(location){
     // Get Location data for importing into database
-    location.dataType = "Location";
+    location.dataType = "location";
 
     location.locationId = parseInt(location.location_id);
     location.locationENName = location.lang_en;
