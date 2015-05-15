@@ -19,10 +19,7 @@ Template.matchingScoresList.onCreated(function () {
 
 Template.matchingScoresList.helpers({
     matchingScores: function (){
-    	var selectedLocation = Number(Session.get('selectedLocation'));
-    	if(isNaN(selectedLocation)){
-    		selectedLocation = -1
-    	}
+    	var selectedLocation = parseInt(Template.instance().selectedLocation.get());
 
     	return MatchingScores.find({cityId: selectedLocation}, { sort: { avgMatchingScore: -1 } , limit: Template.instance().loaded.get() });
 	},
@@ -39,7 +36,6 @@ Template.matchingScoresList.events({
         selectedLocation = $(event.target).find('option:selected').val();
         instance.selectedLocation.set(selectedLocation);
         instance.loaded.set(instance.limit);
-        Session.set('selectedLocation', selectedLocation);
     },
     "click .load-more": function(event, instance){
     	event.preventDefault();

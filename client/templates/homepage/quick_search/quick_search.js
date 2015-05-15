@@ -26,8 +26,8 @@ Template.quickSearch.onCreated(function () {
 
 Template.quickSearch.helpers({
     resultMatchingScores: function (){
-        searchLocation = parseInt(Session.get('quickSearchLocation'));
-        searchIndustry = parseInt(Session.get('quickSearchIndustry'));
+        searchLocation = Template.instance().selectedLocation.get();
+        searchIndustry = Template.instance().selectedIndustry.get();
 
         if (searchIndustry == -1){
             searchResult = undefined;
@@ -41,20 +41,16 @@ Template.quickSearch.helpers({
 
 Template.quickSearch.events({
     'click #btn-show-me': function(event, instance){
+        event.preventDefault();
         var selectedLocation = instance.selectedLocation.get();
         var selectedIndustry = instance.selectedIndustry.get();
 
         selectedIndustry = Number($('#selectSearchCategory').val());
-        //if(selectedIndustry < 0){
-        //    return alert('Please choose one Job Category');
-        //}
         instance.selectedIndustry.set(selectedIndustry);
 
         selectedLocation = Number($('#selectSearchLocation').val());
         instance.selectedLocation.set(selectedLocation);
 
         Session.set('isQuickSearchClicked', true);
-        Session.set('quickSearchLocation', selectedLocation);
-        Session.set('quickSearchIndustry', selectedIndustry);
     }
 });
