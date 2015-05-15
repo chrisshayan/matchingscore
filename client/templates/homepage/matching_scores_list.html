@@ -29,6 +29,9 @@
                     {{#each matchingScores}}
                         {{> matchingScore}}
                     {{/each}}
+                    {{#if hasMore}}
+						<a class="load-more" href="{{nextPath}}">Xem thêm...</a>
+					{{/if}}
 				</tbody>
             {{else}}
 				<tbody class="matching-scores">
