@@ -1,16 +1,23 @@
 Template.quickSearch.onCreated(function () {
     var instance = this;
 
-    instance.selectedLocation = new ReactiveVar(-1);
-    instance.selectedIndustry = new ReactiveVar(-1);
+    instance._searchCondition = {
+        selectedLocation: -1,
+        selectedIndustry: -1
+    };
+    instance.searchCondition = new ReactiveVar({
+        selectedLocation: -1,
+        selectedIndustry: -1
+    });
     instance.isQuickSearchClicked = false;
 
     instance.autorun(function (){
-        var selectedLocation = instance.selectedLocation.get();
-        var selectedIndustry = instance.selectedIndustry.get();
+        var searchCondition = instance.searchCondition.get();
         
-        if(parseInt(selectedIndustry) !== -1){
-            var subscription = instance.subscribe('msquicksearch', selectedLocation, selectedIndustry);
+        if(parseInt(searchCondition.selectedIndustry) !== -1){
+            var subscription = instance.subscribe('msquicksearch', 
+                searchCondition.selectedLocation, 
+                searchCondition.selectedIndustry);
 
             /*if (subscription.ready()){
                 console.log("> Received matchingscore for cityId " + selectedLocation + ", selectedIndustry " + selectedIndustry + "\n\n");
@@ -19,20 +26,21 @@ Template.quickSearch.onCreated(function () {
             }*/
         }
     });
-});
 
-Template.quickSearch.helpers({
-    resultMatchingScores: function (){
-        var searchLocation = Template.instance().selectedLocation.get();
-        var searchIndustry = Template.instance().selectedIndustry.get();
+    instance.searchResult = function() {
+        var searchCondition = instance.searchCondition.get();
+        var searchResult = MatchingScores.findOne({
+            cityId: searchCondition.selectedLocation, 
+            industryId: searchCondition.selectedIndustry
+        });
 
-        var searchResult = MatchingScores.findOne({cityId: searchLocation, industryId: searchIndustry});
         if(searchResult === undefined){
-            if(Template.instance().isQuickSearchClicked &
-                Template.instance().ready){
+            if(instance.isQuickSearchClicked 
+                & searchCondition.selectedLocation == instance._searchCondition.selectedLocation
+                & searchCondition.selectedIndustry == instance._searchCondition.selectedIndustry){
+                instance.isQuickSearchClicked = false;
                 throwError('Không có kết quả Matching Score theo điều kiện tìm kiếm!', 'alert-info');
             }
-            
             searchResult = {
                 minMatchingScore: 0,
                 maxMatchingScore: 0,
@@ -40,26 +48,33 @@ Template.quickSearch.helpers({
                 countMatchingScore: 0
             };
         }
-
+        
         searchResult._countMatchingScore = searchResult.countMatchingScore.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-        Template.instance().isQuickSearchClicked = false;
+        instance._searchCondition = {
+            selectedLocation: searchCondition.selectedLocation,
+            selectedIndustry: searchCondition.selectedIndustry
+        };
         return searchResult;
+    }
+});
+
+Template.quickSearch.helpers({
+    resultMatchingScores: function (){
+        return Template.instance().searchResult();
     }
 });
 
 Template.quickSearch.events({
     'click #btn-show-me': function(event, instance){
         event.preventDefault();
-        var selectedLocation = instance.selectedLocation.get();
-        var selectedIndustry = instance.selectedIndustry.get();
 
-        selectedIndustry = parseInt($('#selectSearchCategory').val());
-        instance.selectedIndustry.set(selectedIndustry);
+        var searchCondition = instance.searchCondition.get();
+        searchCondition.selectedIndustry = parseInt($('#selectSearchCategory').val());
+        searchCondition.selectedLocation = parseInt($('#selectSearchLocation').val());
+        
+        instance.searchCondition.set(searchCondition);
 
-        selectedLocation = parseInt($('#selectSearchLocation').val());
-        instance.selectedLocation.set(selectedLocation);
-
-        if(selectedIndustry == -1){
+        if(searchCondition.selectedIndustry == -1){
             throwError('Vui lòng chọn điều kiện tìm kiếm theo ngành nghề!', 'alert-warning');
         }
         instance.isQuickSearchClicked = true;

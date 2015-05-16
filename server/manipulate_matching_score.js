@@ -59,7 +59,7 @@ pullSearchMatchingScore = function(city){
     debuger('Data updated on ' + dataUpdatedOn + ' - C ' + city);
 
     curDate = new Date();
-    if (dataUpdatedOn < curDate.setMinutes(curDate.getMinutes() - 2)){
+    if (dataUpdatedOn < curDate.setMinutes(curDate.getMinutes() - 3)){
       debuger("[Outdated] Pull matching score - C " + city);
       pullMatchingScores(city, period);
     }
