@@ -1,37 +1,44 @@
-// Function insert data for categories
-insertCategoriesData = function(categories){
-    // Get categories data for importing into database
-    var categoriesData = categories;
-    categoriesData.dataType = "categories";
+// Function insert data for category
+insertCategoryData = function(category){
+    // Get category data for importing into database
+    category.dataType = "category";
 
-    categoriesData.categoryId = Number(categories.category_id);
-    categoriesData.categoryENName = categories.lang_en;
-    categoriesData.categoryVNName = categories.lang_vn;
+    category.categoryId = parseInt(category.category_id);
+    category.categoryENName = category.lang_en;
+    category.categoryVNName = category.lang_vn;
 
-    categoriesData = _.omit(categoriesData, 'category_id');
-    categoriesData = _.omit(categoriesData, 'lang_en');
-    categoriesData = _.omit(categoriesData, 'lang_vn');
+    category = _.omit(category, 'category_id');
+    category = _.omit(category, 'lang_en');
+    category = _.omit(category, 'lang_vn');
 
     //Insert statistic matching score for every industry into database
-    return MasterData.insert(categoriesData);
-    debuger('Insert categories data');
+    if(MasterData.find({dataType: "category", categoryId: category.categoryId}).count() == 0){
+        debuger('Insert category I ' + category.categoryId, 2);
+        return MasterData.insert(category);
+    } else {
+        debuger('Existed category I '+ category.categoryId, 2);
+    }
 };
 
-// Function insert data for locations
-insertLocationsData = function(locations){
-    // Get locations data for importing into database
-    var locationsData = locations;
-    locationsData.dataType = "locations";
+// Function insert data for Location
+insertLocationData = function(location){
+    // Get Location data for importing into database
+    location.dataType = "location";
 
-    locationsData.locationId = Number(locations.location_id);
-    locationsData.locationENName = locations.lang_en;
-    locationsData.locationVNName = locations.lang_vn;
+    location.locationId = parseInt(location.location_id);
+    location.locationENName = location.lang_en;
+    location.locationVNName = location.lang_vn;
 
-    locationsData = _.omit(locationsData, 'location_id');
-    locationsData = _.omit(locationsData, 'lang_en');
-    locationsData = _.omit(locationsData, 'lang_vn');
+    location = _.omit(location, 'location_id');
+    location = _.omit(location, 'lang_en');
+    location = _.omit(location, 'lang_vn');
 
     //Insert statistic matching score for every industry into database
-    return MasterData.insert(locationsData);
-    debuger('Insert locations data');
+    if(MasterData.find({dataType: "location", locationId: location.locationId}).count() == 0){
+        debuger('Insert location C ' + location.locationId, 2);
+        return MasterData.insert(location);
+    } else {
+        debuger('Existed location C '+ location.locationId, 2);
+    }
+    
 };

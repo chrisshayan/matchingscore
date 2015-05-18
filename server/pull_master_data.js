@@ -6,14 +6,14 @@ pullMasterData = function(){
     var data = callVietnamworksAPI(apiName, parameters);
 
     // Get Categories Data
-    _.each(data.categories, function(categories){
-        //debuger(content.data.categories);
-        insertCategoriesData(categories);
+    debuger('Insert Categories Data');
+    _.each(data.categories, function(category){
+        insertCategoryData(category);
     });
 
     // Get Locations Data
-    _.each(data.locations, function(locations){
-        //debuger(locations);
-        insertLocationsData(locations);
+    debuger('Insert Locations Data')
+    _.each(data.locations, function(location){
+        insertLocationData(location);
     });
 };

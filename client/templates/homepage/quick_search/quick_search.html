@@ -15,11 +15,12 @@
                     </div>
                 </div>
             </div>
+                {{> errors}}
             {{#if Template.subscriptionsReady}}
-                {{resultMatchingScores}}
-                {{> quickSearchResult}}
+                {{>resultMatchingScore resultMatchingScores}}
             {{else}}
-                Loading...
+                <br/>
+                <div class="loader-wrapper">{{>spinner}}</div>
             {{/if}}
         </section>
     </form>
