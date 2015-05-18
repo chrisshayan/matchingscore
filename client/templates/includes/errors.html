@@ -1,6 +1,6 @@
 <template name="errors">
-	<div class="errors">
-		{{#each errors}}
+	<div class="errors push-top-lg">
+		{{#each errors errorType}}
 			{{> error}}
 		{{/each}}
 	</div>

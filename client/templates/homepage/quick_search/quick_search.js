@@ -40,7 +40,7 @@ Template.quickSearch.onCreated(function () {
                 & searchCondition.selectedLocation == instance._searchCondition.selectedLocation
                 & searchCondition.selectedIndustry == instance._searchCondition.selectedIndustry){
                 instance.isQuickSearchClicked = false;
-                throwError('Không có kết quả Matching Score theo điều kiện tìm kiếm!', 'alert-info');
+                throwError('Không có kết quả Matching Score theo điều kiện tìm kiếm!', 'alert-info', 'quickSearch');
             }
             searchResult = {
                 minMatchingScore: 0,
@@ -69,6 +69,8 @@ Template.quickSearch.events({
     'click #btn-show-me': function(event, instance){
         event.preventDefault();
 
+        Errors.remove({errorType:"quickSearch"});
+
         var searchCondition = instance.searchCondition.get();
         searchCondition.selectedIndustry = parseInt($('#selectSearchCategory').val());
         searchCondition.selectedLocation = parseInt($('#selectSearchLocation').val());
@@ -76,7 +78,7 @@ Template.quickSearch.events({
         instance.searchCondition.set(searchCondition);
 
         if(searchCondition.selectedIndustry == -1){
-            throwError('Vui lòng chọn điều kiện tìm kiếm theo ngành nghề!', 'alert-warning');
+            throwError('Vui lòng chọn điều kiện tìm kiếm theo ngành nghề!', 'alert-warning', 'quickSearch');
         }
         instance.isQuickSearchClicked = true;
     }
