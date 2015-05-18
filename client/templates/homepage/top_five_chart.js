@@ -1,5 +1,7 @@
-Template.topFiveChart.helpers({
-	drawChart: function(top5MatchingScore){
+Template.topFiveChart.rendered = function() {
+	this.autorun(function(){
+		top5MatchingScore = Template.instance().data.top5MatchingScore;
+
 		var matchingScores = {
 			industry: [],
 			min: [],
@@ -56,5 +58,5 @@ Template.topFiveChart.helpers({
         		data: matchingScores.avg
         	}]
 		});
-	}
-})
+	});
+};
