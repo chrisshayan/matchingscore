@@ -19,6 +19,8 @@
 		<section class="matching-score-graph">
         	{{#if Template.subscriptionsReady}}
         		{{>topFiveChart top5MatchingScore=topFiveMatchingScore}}
+        	{{else}}
+        		<div class="loader-wrapper">{{>spinner}}</div>
         	{{/if}}
 		</section>
 	{{else}}
@@ -54,7 +56,5 @@
 	{{/if}}
 	{{#if Template.subscriptionsReady}}
     	{{> lastUpdated}}
-    {{else}}
-    	<div class="loader-wrapper">{{>spinner}}</div>
     {{/if}}
 </template>
