@@ -44,5 +44,9 @@
 		{{#if Template.subscriptionsReady}}
         	{{> lastUpdated}}
         {{/if}}
+        <div id="top-five-chart"></div>
+        {{#if Template.subscriptionsReady}}
+        	{{drawChart}}
+        {{/if}}
 	</section>
 </template>
