@@ -24,24 +24,22 @@
 					<th>Tổng cộng</th>
 				</tr>
 			</thead>
-            {{#if Template.subscriptionsReady}}
-				<tbody class="matching-scores">
-                    {{#each matchingScores}}
-                        {{> matchingScore}}
-                    {{/each}}
-                    {{#if hasMore}}
+			<tbody class="matching-scores">
+                {{#each matchingScores}}
+                    {{> matchingScore}}
+                {{/each}}
+                {{#if Template.subscriptionsReady}}
+                	{{#if hasMore}}
 						<a class="load-more" href="{{nextPath}}">Xem thêm...</a>
 					{{/if}}
-				</tbody>
-            {{else}}
-				<tbody class="matching-scores">
+				{{else}}
 					<tr>
 						<td colspan="5">
 							<div class="loader-wrapper">{{>spinner}}</div>
 						</td>
 					</tr>
-				</tbody>
-            {{/if}}
+				{{/if}}
+			</tbody>
 		</table>
 		{{#if Template.subscriptionsReady}}
         	{{> lastUpdated}}

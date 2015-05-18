@@ -1,9 +1,15 @@
-Meteor.publish('matchingscores', function (city) {
+Meteor.publish('matchingscores', function (city, loadAllowed) {
 	if(city == 'null' || city == 'undefined' || city == 0){
 		city = -1;
 	}
 	city = parseInt(city, 10);
-    return MatchingScores.find({cityId: city});
+
+	if(loadAllowed == 'null' || loadAllowed == 'undefined' || loadAllowed == 0){
+		loadAllowed = 6;
+	}
+	loadAllowed = parseInt(loadAllowed);
+	
+    return MatchingScores.find({cityId: city}, {limit: loadAllowed});
 });
 
 Meteor.publish('msquicksearch', function (city, industry) {

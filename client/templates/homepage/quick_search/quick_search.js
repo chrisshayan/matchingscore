@@ -35,7 +35,8 @@ Template.quickSearch.onCreated(function () {
         });
 
         if(searchResult === undefined){
-            if(instance.isQuickSearchClicked 
+            if(instance.isQuickSearchClicked
+                & searchCondition.selectedIndustry !== -1
                 & searchCondition.selectedLocation == instance._searchCondition.selectedLocation
                 & searchCondition.selectedIndustry == instance._searchCondition.selectedIndustry){
                 instance.isQuickSearchClicked = false;

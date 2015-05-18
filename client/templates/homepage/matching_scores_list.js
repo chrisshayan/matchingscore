@@ -1,13 +1,16 @@
 Template.matchingScoresList.onCreated(function () {
 	var instance = this;
 
-	instance.selectedLocation = new ReactiveVar(-1);
-	instance.loaded = new ReactiveVar(5);
 	instance.limit = 5;
+	instance.loadCondition = new ReactiveVar({
+		selectedLocation: -1,
+		loadAllowed: instance.limit + 1
+	});
 
 	instance.autorun(function (){
-		var selectedLocation = instance.selectedLocation.get();		
-		var subscription = instance.subscribe('matchingscores', selectedLocation);
+		var selectedLocation = instance.loadCondition.get().selectedLocation;
+		var loadAllowed = instance.loadCondition.get().loadAllowed;
+		var subscription = instance.subscribe('matchingscores', selectedLocation, loadAllowed);
 		
 		/*if (subscription.ready()){
 			console.log("> Received matchingscore for cityId " + selectedLocation + "\n\n");
@@ -19,12 +22,12 @@ Template.matchingScoresList.onCreated(function () {
 
 Template.matchingScoresList.helpers({
     matchingScores: function (){
-    	var selectedLocation = parseInt(Template.instance().selectedLocation.get());
+    	var loadCondition = Template.instance().loadCondition.get();
 
-    	return MatchingScores.find({cityId: selectedLocation}, { sort: { avgMatchingScore: -1 } , limit: Template.instance().loaded.get() });
+    	return MatchingScores.find({ cityId: loadCondition.selectedLocation }, { sort: { avgMatchingScore: -1 } , limit: (loadCondition.loadAllowed - 1) });
 	},
 	hasMore: function (){
-		return MatchingScores.find({}).count() > Template.instance().loaded.get();
+		return MatchingScores.find({}).count() > Template.instance().loadCondition.get().loadAllowed - 1;
 	}
 });
 
@@ -32,16 +35,19 @@ Template.matchingScoresList.events({
     "change #selectedLocation": function(event, instance){
     	event.preventDefault();
     	
-        var selectedLocation = instance.selectedLocation.get();
-        selectedLocation = $(event.target).find('option:selected').val();
-        instance.selectedLocation.set(selectedLocation);
-        instance.loaded.set(instance.limit);
+        var loadCondition = instance.loadCondition.get();
+        var selectedLocation = parseInt($(event.target).find('option:selected').val());
+
+        loadCondition.selectedLocation = selectedLocation;
+        loadCondition.loadAllowed = instance.limit + 1;
+
+        instance.loadCondition.set(loadCondition);
     },
     "click .load-more": function(event, instance){
     	event.preventDefault();
 
-    	var loaded = instance.loaded.get();
-    	loaded += instance.limit;
-    	instance.loaded.set(loaded);
+    	var loadCondition = instance.loadCondition.get();
+    	loadCondition.loadAllowed += instance.limit;
+    	instance.loadCondition.set(loadCondition);
     }
 });
