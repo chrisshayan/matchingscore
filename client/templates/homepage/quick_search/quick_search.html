@@ -15,7 +15,7 @@
                     </div>
                 </div>
             </div>
-                {{> errors}}
+            {{>errors errorType='quickSearch'}}
             {{#if Template.subscriptionsReady}}
                 {{>resultMatchingScore resultMatchingScores}}
             {{else}}
