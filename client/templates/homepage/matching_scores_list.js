@@ -6,6 +6,7 @@ Template.matchingScoresList.onCreated(function () {
 		selectedLocation: -1,
 		loadAllowed: instance.limit + 1
 	});
+	instance.chooseGraph = new ReactiveVar(false);
 
 	instance.autorun(function (){
 		var selectedLocation = instance.loadCondition.get().selectedLocation;
@@ -31,67 +32,13 @@ Template.matchingScoresList.helpers({
 
 		return MatchingScores.find({ cityId: loadCondition.selectedLocation }).count() > Template.instance().loadCondition.get().loadAllowed - 1;
 	},
-	drawChart: function() {
+	topFiveMatchingScore: function() {
 		var loadCondition = Template.instance().loadCondition.get();
 
-		top5MatchingScore = MatchingScores.find({ cityId: loadCondition.selectedLocation }, {sort: {countMatchingScore: -1}, limit: 5}).fetch();
-
-		var matchingScores = {
-			industry: [],
-			min: [],
-			max: [],
-			avg: []
-		}
-	
-		for (i = 0; i < top5MatchingScore.length; i++) {
-			industry = 
-				MasterData.findOne({dataType: "category", categoryId: top5MatchingScore[i].industryId}).categoryVNName +
-				'(' + top5MatchingScore[i].countMatchingScore + ')';
-			matchingScores.industry.push(industry);
-			matchingScores.min.push(top5MatchingScore[i].minMatchingScore);
-			matchingScores.max.push(top5MatchingScore[i].maxMatchingScore);
-			matchingScores.avg.push(top5MatchingScore[i].avgMatchingScore);
-		}
-	
-		$('#top-five-chart').highcharts({
-			chart: {
-				type: 'column'
-			},
-			title: {
-				text: 'Biểu đồ Matching Score',
-				x: -20
-			},
-			subtitle: {
-				text: '5 ngành nghề được ứng tuyển nhiều nhất',
-				x: -20
-			},
-			xAxis: {
-				categories: matchingScores.industry
-			},
-			yAxis: {
-				title: {
-					text: 'Points'
-				},
-				min: 0,
-				max: 100
-			},
-			legend: {
-            	layout: 'vertical',
-            	align: 'right',
-            	verticalAlign: 'middle',
-            	borderWidth: 0
-        	},
-        	series: [{
-        		name: 'Min',
-        		data: matchingScores.min
-        	}, {
-        		name: 'Max',
-        		data: matchingScores.max
-        	}, {
-        		name: 'Average',
-        		data: matchingScores.avg
-        	}]
-		});
+		return MatchingScores.find({ cityId: loadCondition.selectedLocation }, {sort: {countMatchingScore: -1}, limit: 5}).fetch();
+	},
+	chooseGraph: function() {
+		return Template.instance().chooseGraph.get();
 	}
 });
 
@@ -113,5 +60,15 @@ Template.matchingScoresList.events({
     	var loadCondition = instance.loadCondition.get();
     	loadCondition.loadAllowed += instance.limit;
     	instance.loadCondition.set(loadCondition);
+    },
+    "click .choose-graph": function(event, instance){
+    	event.preventDefault();
+
+    	instance.chooseGraph.set(true);
+    },
+    "click .choose-grid": function(event, instance){
+    	event.preventDefault();
+
+    	instance.chooseGraph.set(false);
     }
 });

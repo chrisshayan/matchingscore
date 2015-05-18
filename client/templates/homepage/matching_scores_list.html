@@ -13,40 +13,48 @@
 			</section>
 		</form>
 	</section>
-	<section class="matching-score-list">
-		<table class="table table-bordered">
-			<thead>
-				<tr>
-					<th>Ngành nghề</th>
-					<th>Thấp nhất</th>
-					<th>Trung bình</th>
-					<th>Cao nhất</th>
-					<th>Tổng cộng</th>
-				</tr>
-			</thead>
-			<tbody class="matching-scores">
-                {{#each matchingScores}}
-                    {{> matchingScore}}
-                {{/each}}
-                {{#if Template.subscriptionsReady}}
-                	{{#if hasMore}}
-						<a class="load-more" href="{{nextPath}}">Xem thêm...</a>
-					{{/if}}
-				{{else}}
+	<a class="choose-graph">Graph</a>
+	<a class="choose-grid">Grid</a>
+	{{#if chooseGraph}}
+		<section class="matching-score-graph">
+        	{{#if Template.subscriptionsReady}}
+        		{{>topFiveChart top5MatchingScore=topFiveMatchingScore}}
+        	{{/if}}
+		</section>
+	{{else}}
+		<section class="matching-score-list">
+			<table class="table table-bordered">
+				<thead>
 					<tr>
-						<td colspan="5">
-							<div class="loader-wrapper">{{>spinner}}</div>
-						</td>
+						<th>Ngành nghề</th>
+						<th>Thấp nhất</th>
+						<th>Trung bình</th>
+						<th>Cao nhất</th>
+						<th>Tổng cộng</th>
 					</tr>
-				{{/if}}
-			</tbody>
-		</table>
-		{{#if Template.subscriptionsReady}}
-        	{{> lastUpdated}}
-        {{/if}}
-        <div id="top-five-chart"></div>
-        {{#if Template.subscriptionsReady}}
-        	{{drawChart}}
-        {{/if}}
-	</section>
+				</thead>
+				<tbody class="matching-scores">
+                	{{#each matchingScores}}
+                    	{{> matchingScore}}
+                	{{/each}}
+                	{{#if Template.subscriptionsReady}}
+                		{{#if hasMore}}
+							<a class="load-more">Xem thêm...</a>
+						{{/if}}
+					{{else}}
+						<tr>
+							<td colspan="5">
+								<div class="loader-wrapper">{{>spinner}}</div>
+							</td>
+						</tr>
+					{{/if}}
+				</tbody>
+			</table>
+		</section>
+	{{/if}}
+	{{#if Template.subscriptionsReady}}
+    	{{> lastUpdated}}
+    {{else}}
+    	<div class="loader-wrapper">{{>spinner}}</div>
+    {{/if}}
 </template>
