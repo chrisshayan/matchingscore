@@ -32,7 +32,10 @@ updateMatchingScore = function(industry, runDate, cityId){
   industryData.maxMatchingScore = Number(industry.maxMatchingScore);
   industryData.avgMatchingScore = Number(industry.avgMatchingScore);
   industryData.countMatchingScore = Number(industry.countMatchingScore);
-
+  industryData.oldData = MatchingScores.findOne({
+    cityId: industryData.cityId, 
+    industryId: industryData.industryId
+  });
 
   debuger('Update Matching Scores: I ' + industryData.industryId + ' - C ' + industryData.cityId, 2);
 
@@ -44,7 +47,8 @@ updateMatchingScore = function(industry, runDate, cityId){
       minMatchingScore: industryData.minMatchingScore,
       maxMatchingScore: industryData.maxMatchingScore,
       avgMatchingScore: industryData.avgMatchingScore,
-      countMatchingScore: industryData.countMatchingScore
+      countMatchingScore: industryData.countMatchingScore,
+      oldData: industryData.oldData
       }
     }
   );
