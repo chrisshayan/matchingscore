@@ -2,8 +2,8 @@ Template.callMeBackModal.events({
     'click #btnCallMeBackModal': function (e) {
         callMeBackUsers.insert({
             'fullName': $('#fullname').val(),
-            'employerCompany': $('#employerCompany').val(),
-            'employerCity': $('#employerCity').val(),
+            'customerCompany': $('#customerCompany').val(),
+            'customerCity': $('#customerCity').val(),
             'phone': $('#phone').val(),
             'email': $('#email').val(),
             'submitted': new Date().getTime()
@@ -21,5 +21,12 @@ Template.callMeBackModal.events({
             $('#err_phone_invalid').stop().fadeOut();
             $('#btnCallMeBackModal').removeClass('disabled');
         }
+    }
+});
+
+
+Template.callMeBackModal.helpers({
+    locationsList: function(){
+        return MasterData.find({ dataType: "location" }, {sort: {"locationVNName": 1}}, {reactive: false}).fetch();
     }
 });
