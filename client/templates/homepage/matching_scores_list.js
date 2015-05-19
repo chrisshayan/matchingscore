@@ -1,11 +1,12 @@
 Template.matchingScoresList.onCreated(function () {
 	var instance = this;
 
-	instance.limit = 5;
+	instance.limit = 10;
 	instance.loadCondition = new ReactiveVar({
 		selectedLocation: -1,
 		loadAllowed: instance.limit + 1
 	});
+	instance.chooseGraph = new ReactiveVar(false);
 
 	instance.autorun(function (){
 		var selectedLocation = instance.loadCondition.get().selectedLocation;
@@ -27,7 +28,17 @@ Template.matchingScoresList.helpers({
     	return MatchingScores.find({ cityId: loadCondition.selectedLocation }, { sort: { avgMatchingScore: -1 } , limit: (loadCondition.loadAllowed - 1) });
 	},
 	hasMore: function (){
-		return MatchingScores.find({}).count() > Template.instance().loadCondition.get().loadAllowed - 1;
+		var loadCondition = Template.instance().loadCondition.get();
+
+		return MatchingScores.find({ cityId: loadCondition.selectedLocation }).count() > Template.instance().loadCondition.get().loadAllowed - 1;
+	},
+	topFiveMatchingScore: function() {
+		var loadCondition = Template.instance().loadCondition.get();
+
+		return MatchingScores.find({ cityId: loadCondition.selectedLocation }, {sort: {countMatchingScore: -1}, limit: 5}).fetch();
+	},
+	chooseGraph: function() {
+		return Template.instance().chooseGraph.get();
 	}
 });
 
@@ -49,5 +60,15 @@ Template.matchingScoresList.events({
     	var loadCondition = instance.loadCondition.get();
     	loadCondition.loadAllowed += instance.limit;
     	instance.loadCondition.set(loadCondition);
+    },
+    "click .choose-graph": function(event, instance){
+    	event.preventDefault();
+
+    	instance.chooseGraph.set(true);
+    },
+    "click .choose-grid": function(event, instance){
+    	event.preventDefault();
+
+    	instance.chooseGraph.set(false);
     }
 });

@@ -14,7 +14,8 @@ insertMatchingScore = function(industry, runDate, cityId){
   industryData = _.omit(industryData, 'industryid');
   industryData = _.omit(industryData, 'cityid');
 
-  debuger('Update Matching Scores: I ' + industryData.industryId + ' - C ' + industryData.cityId, 2);
+  debuger('Update Matching Scores: I ' + 
+    industryData.industryId + ' - C ' + industryData.cityId, 2);
   
   //Insert statistic matching score for every industry into database
   return MatchingScores.insert(industryData); 
@@ -32,9 +33,22 @@ updateMatchingScore = function(industry, runDate, cityId){
   industryData.maxMatchingScore = Number(industry.maxMatchingScore);
   industryData.avgMatchingScore = Number(industry.avgMatchingScore);
   industryData.countMatchingScore = Number(industry.countMatchingScore);
+  var oldData = MatchingScores.findOne({
+    cityId: industryData.cityId, 
+    industryId: industryData.industryId
+  });
 
+  if (oldData !== undefined){
+    debuger('[Insert Old Data] Found existed Matching Scores data: I ' + 
+      industryData.industryId + ' - C ' + industryData.cityId, 2);
+    oldData = _.omit(oldData, '_id');
+    oldData = _.omit(oldData, 'cityId');
+    oldData = _.omit(oldData, 'industryId');
+    oldData = _.omit(oldData, 'oldData');
+  }
 
-  debuger('Update Matching Scores: I ' + industryData.industryId + ' - C ' + industryData.cityId, 2);
+  debuger('Update Matching Scores: I ' + 
+    industryData.industryId + ' - C ' + industryData.cityId, 2);
 
   //Update statistic matching score for every industry into database
   return MatchingScores.update(
@@ -44,7 +58,8 @@ updateMatchingScore = function(industry, runDate, cityId){
       minMatchingScore: industryData.minMatchingScore,
       maxMatchingScore: industryData.maxMatchingScore,
       avgMatchingScore: industryData.avgMatchingScore,
-      countMatchingScore: industryData.countMatchingScore
+      countMatchingScore: industryData.countMatchingScore,
+      oldData: oldData
       }
     }
   );
