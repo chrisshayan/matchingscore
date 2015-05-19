@@ -14,11 +14,15 @@
 							<span class="help-block error-message" style="display:none;" id="err_fullname">Vui lòng nhập tên</span>
 						</div>
 						<div class="form-group">
-							<input type="text" name="companyname" id="employerCompany" class="form-control company" placeholder="Công ty (optional)"/>
+							<input type="text" name="companyname" id="customerCompany" class="form-control company" placeholder="Công ty (optional)"/>
 						</div>
 						<div class="form-group">
-							<input type="text" name="employerCity" id="employerCity" class="form-control location" placeholder="Địa điểm (optional)"/>
-							<div class="location-list"></div>
+							<select name="" class="form-control location">
+								<option value=-1>Tất cả địa điểm</option>
+                                {{#each locationsList}}
+                                    {{> jobLocation}}
+                                {{/each}}
+							</select>
 						</div>
 						<div class="form-group">
 							<input type="tel" name="phone" id="phone" class="form-control" placeholder="Điện thoại"/>
