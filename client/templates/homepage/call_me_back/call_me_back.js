@@ -14,10 +14,14 @@ Template.callMeBackModal.events({
                 'submittedDate': new Date().getTime()
             };
 
-            callMeBackUsers.insert(customerInfo);
-            Meteor.call('callAddCRMLead', customerInfo);
+            Meteor.call('callAddCRMLead', customerInfo, function(error, result){
+                if(result){
+                    throwError('Thông tin của bạn đã được ghi nhận. Chúng tôi sẽ gọi lại cho bạn trong thời gian sớm nhất có thể.', 'alert-success', 'callMeBack');
+                } else {
+                    throwError('Thông tin không được ghi nhận thành công!', 'alert-danger', 'callMeBack');
+                }
+            });
 
-           // alert('Thank you! Will contact you soon.');
             $('#callMeBackModal').modal('hide');
         }
     },

@@ -31,10 +31,8 @@ Meteor.methods({
     callAddCRMLead: function(customerInfo){
         // set CRM location code
         customerInfo.locationCrmCode = toCRMLocation(customerInfo.vnwCityId);
-        console.log(customerInfo);
+        callMeBackUsers.insert(customerInfo);
 
-        var result = addCrmLead(customerInfo);
-        console.log(result);
-        return result;
+        return addCrmLead(customerInfo);
     }
 });

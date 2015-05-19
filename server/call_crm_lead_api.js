@@ -23,13 +23,14 @@ addCrmLead = function (customerInfo) {
                 }
             }
         );
-
-        var content = JSON.parse(result.content);
-        debuger('Added CRM Lead for ' + customerInfo.email + ' ' + customerInfo.locationCrmCode, 2);
-
-        return content;
+        
+        if(JSON.parse(result.content)){
+            debuger('Added CRM Lead for ' + customerInfo.email + ' ' + customerInfo.locationCrmCode, 2);
+            return true;
+        }
 
     } catch (e) {
         console.log(e);
+        return false;
     }
 };
