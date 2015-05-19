@@ -16,4 +16,8 @@ pullMasterData = function(){
     _.each(data.locations, function(location){
         insertLocationData(location);
     });
+
+    // Add CRM location to master data - location
+    debuger('Map VNW locations with CRM locations');
+    addCrmLocation();
 };

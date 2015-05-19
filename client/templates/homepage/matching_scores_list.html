@@ -13,9 +13,9 @@
 			</section>
 		</form>
 	</section>
-	<a class="choose-graph">Graph</a>
-	<a class="choose-grid">Grid</a>
 	{{#if chooseGraph}}
+		<a class="choose-graph btn btn-primary active">Graph</a>
+		<a class="choose-grid btn btn-default">Grid</a>
 		<section class="matching-score-graph">
         	{{#if Template.subscriptionsReady}}
         		{{> topFiveChart top5MatchingScore=topFiveMatchingScore}}
@@ -24,14 +24,16 @@
         	{{/if}}
 		</section>
 	{{else}}
+		<a class="choose-graph btn btn-primary">Graph</a>
+		<a class="choose-grid btn btn-default active">Grid</a>
 		<section class="matching-score-list">
 			<table class="table table-bordered">
 				<thead>
 					<tr>
 						<th>Ngành nghề</th>
 						<th>Thấp nhất</th>
-						<th>Trung bình</th>
 						<th>Cao nhất</th>
+						<th>Trung bình</th>
 						<th>Tổng cộng</th>
 					</tr>
 				</thead>
