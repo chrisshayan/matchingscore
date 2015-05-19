@@ -56,7 +56,10 @@ Template.topFiveChart.rendered = function() {
         	}, {
         		name: 'Average',
         		data: matchingScores.avg
-        	}]
+        	}],
+        	credits: {
+        		enabled: false
+        	}
 		});
 	});
 };

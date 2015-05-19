@@ -23,7 +23,7 @@ SyncedCron.add({
 	job: function(){
 		// Call function for pulling data from API
 		// Get matching score base on city and period of applications
-		var period = Meteor.settings.private.matchingScorePullPeriod; // 30 days
+		var period = Meteor.settings.private.matchingScorePullPeriod;
 
 		// Get matching score for all locations
 		debuger('Get matching score for all locations...');
