@@ -1,6 +1,4 @@
 callVietnamworksAPI = function(apiName, parameters){
-    // Consumer Key for calling Vietnamworks API
-    var md5 = "5f6e4e512b178398de4ae966cbf4246777b1aae284698eb1faa55f6121c131f7";
     // API Link
     var url = Meteor.settings.private.apiUrl;
 

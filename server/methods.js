@@ -26,5 +26,13 @@ Meteor.methods({
         searchResult = "calling method quickSearch.";
         searchResult = callVietnamworksAPI(apiName, parameters);
         return searchResult;
+    },
+
+    callAddCRMLead: function(customerInfo){
+        // set CRM location code
+        customerInfo.locationCrmCode = toCRMLocation(customerInfo.vnwCityId);
+        callMeBackUsers.insert(customerInfo);
+
+        return addCrmLead(customerInfo);
     }
 });

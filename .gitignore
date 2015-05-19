@@ -1,2 +1,3 @@
 server/settings.json
+server/settings.production.json
 .idea/*
