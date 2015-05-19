@@ -1,4 +1,7 @@
 {
+	"public": {
+		"cronJobPeriod": "24 giờ"
+	},
 	"private": {
 		"apiConsumerKey": "",
 		"apiUrl": "",

@@ -35,7 +35,7 @@ Template.matchingScoresList.helpers({
 	topFiveMatchingScore: function() {
 		var loadCondition = Template.instance().loadCondition.get();
 
-		return MatchingScores.find({ cityId: loadCondition.selectedLocation }, {sort: {countMatchingScore: -1}, limit: 5}).fetch();
+		return MatchingScores.find({ cityId: loadCondition.selectedLocation }, {sort: {avgMatchingScore: -1}, limit: 5}).fetch();
 	},
 	chooseGraph: function() {
 		return Template.instance().chooseGraph.get();
