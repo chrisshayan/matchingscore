@@ -1,10 +1,10 @@
 Meteor.startup(function(){
 	// Initialize Master Data
+	console.log('Initialize data');
 	pullMasterData();
 
 	// Initialize data for matching score
 	if(MatchingScores.find().count() == 0){
-		console.log('Initialize data');
 		initializeMatchingScores(Meteor.settings.private.matchingScorePullPeriod);
 	}
 

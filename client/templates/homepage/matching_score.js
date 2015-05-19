@@ -14,14 +14,14 @@ Template.matchingScore.helpers({
                 );
         } else if (this.oldData.countMatchingScore > this.countMatchingScore) {
             return Spacebars.SafeString(
-                "<img src=\"/assets/images/symbol-arrow-down.png\" alt=\"down\"/> " +
+                "<img src=\"/assets/images/index-down.png\" class=\"status-down\" alt=\"down\"/> " +
                 this.countMatchingScore.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' (' + 
                     (this.countMatchingScore - this.oldData.countMatchingScore).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + 
                     ')'
                 );
         } else {
             return Spacebars.SafeString(
-                "<img src=\"/assets/images/symbol-arrow-up.png\" alt=\"up\"/> " +
+                "<img src=\"/assets/images/index-up.png\" class=\"status-up\" alt=\"up\"/> " +
                 this.countMatchingScore.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' (+' + 
                     (this.countMatchingScore - this.oldData.countMatchingScore).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + 
                     ')'
@@ -39,14 +39,14 @@ Template.matchingScore.helpers({
                 );
         } else if (this.oldData.minMatchingScore > this.minMatchingScore) {
             return Spacebars.SafeString(
-                "<img src=\"/assets/images/symbol-arrow-down.png\" alt=\"down\"/> " +
+                "<img src=\"/assets/images/index-down.png\" class=\"status-down\" alt=\"down\"/> " +
                 (' ' + parseFloat(this.minMatchingScore).toFixed(2)).slice(-6) + ' (' + 
                     parseFloat(this.minMatchingScore - this.oldData.minMatchingScore).toFixed(2) + 
                     ')'
                 );
         } else {
             return Spacebars.SafeString(
-                "<img src=\"/assets/images/symbol-arrow-up.png\" alt=\"up\"/> " +
+                "<img src=\"/assets/images/index-up.png\" class=\"status-up\" alt=\"up\"/> " +
                 (' ' + parseFloat(this.minMatchingScore).toFixed(2)).slice(-6) + ' (+' + 
                     parseFloat(this.minMatchingScore - this.oldData.minMatchingScore).toFixed(2) + 
                     ')'
@@ -64,14 +64,14 @@ Template.matchingScore.helpers({
                 );
     	} else if (this.oldData.avgMatchingScore > this.avgMatchingScore) {
     		return Spacebars.SafeString(
-    			"<img src=\"/assets/images/symbol-arrow-down.png\" alt=\"down\"/> " +
+    			"<img src=\"/assets/images/index-down.png\" class=\"status-down\" alt=\"down\"/> " +
                 (' ' + parseFloat(this.avgMatchingScore).toFixed(2)).slice(-6) + ' (' + 
                     parseFloat(this.avgMatchingScore - this.oldData.avgMatchingScore).toFixed(2) + 
                     ')'
     			);
     	} else {
     		return Spacebars.SafeString(
-    			"<img src=\"/assets/images/symbol-arrow-up.png\" alt=\"up\"/> " +
+    			"<img src=\"/assets/images/index-up.png\" class=\"status-up\" alt=\"up\"/> " +
                 (' ' + parseFloat(this.avgMatchingScore).toFixed(2)).slice(-6) + ' (+' + 
                     parseFloat(this.avgMatchingScore - this.oldData.avgMatchingScore).toFixed(2) + 
                     ')'
@@ -89,14 +89,14 @@ Template.matchingScore.helpers({
                 );
         } else if (this.oldData.maxMatchingScore > this.maxMatchingScore) {
             return Spacebars.SafeString(
-                "<img src=\"/assets/images/symbol-arrow-down.png\" alt=\"down\"/> " +
+                "<img src=\"/assets/images/index-down.png\" class=\"status-down\" alt=\"down\"/> " +
                 (' ' + parseFloat(this.maxMatchingScore).toFixed(2)).slice(-6) + ' (' + 
                     parseFloat(this.maxMatchingScore - this.oldData.maxMatchingScore).toFixed(2) + 
                     ')'
                 );
         } else {
             return Spacebars.SafeString(
-                "<img src=\"/assets/images/symbol-arrow-up.png\" alt=\"up\"/> " +
+                "<img src=\"/assets/images/index-up.png\" class=\"status-up\" alt=\"up\"/> " +
                 (' ' + parseFloat(this.maxMatchingScore).toFixed(2)).slice(-6) + ' (+' + 
                     parseFloat(this.maxMatchingScore - this.oldData.maxMatchingScore).toFixed(2) + 
                     ')'

@@ -2,6 +2,11 @@
 	"private": {
 		"apiConsumerKey": "",
 		"apiUrl": "",
+		"crmLeadApiUrl": "",
+		"crmCampaignKey4MS": "",
+		"crmSourceKey4CallMeBack": 0,
+		"crmLeadQualityCode": "Cold",
+		"crmLeadSubject": "Lead from matchingscore.com",
 		"cronJobPeriod": "every 2 minutes",
 		"matchingScorePullPeriod": 43200,
 		"debug": false,
