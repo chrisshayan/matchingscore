@@ -11,8 +11,9 @@ Template.topFiveChart.rendered = function() {
 	
 		for (i = 0; i < top5MatchingScore.length; i++) {
 			industry = 
-				MasterData.findOne({dataType: "category", categoryId: top5MatchingScore[i].industryId}).categoryVNName +
-				'(' + top5MatchingScore[i].countMatchingScore + ')';
+				MasterData.findOne({
+					dataType: "category", categoryId: top5MatchingScore[i].industryId}).categoryVNName.trim() +
+					' (' + top5MatchingScore[i].countMatchingScore + ')';
 			matchingScores.industry.push(industry);
 			matchingScores.min.push(top5MatchingScore[i].minMatchingScore);
 			matchingScores.max.push(top5MatchingScore[i].maxMatchingScore);
@@ -28,7 +29,7 @@ Template.topFiveChart.rendered = function() {
 				x: -20
 			},
 			subtitle: {
-				text: '5 ngành nghề được ứng tuyển nhiều nhất',
+				text: '5 ngành nghề có Matching Score trung bình cao nhất',
 				x: -20
 			},
 			xAxis: {
@@ -36,7 +37,7 @@ Template.topFiveChart.rendered = function() {
 			},
 			yAxis: {
 				title: {
-					text: 'Points'
+					text: 'Scores'
 				},
 				min: 0,
 				max: 100
