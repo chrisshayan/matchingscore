@@ -1,0 +1,10 @@
+{
+	"private": {
+		"apiConsumerKey": "4fe7bdebb377a0921e81a0dcb4fd2e9f17185d840ac95dab809a2578cb3e8757",
+		"apiUrl": "https://api.vietnamworks.com",
+		"cronJobPeriod": "every 5 minutes",
+		"matchingScorePullPeriod": 1440,
+		"debug": true,
+		"debugLevel": 1
+	}
+}
