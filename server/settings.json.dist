@@ -1,6 +1,6 @@
 {
 	"public": {
-		"cronJobPeriod": "24 giờ"
+		"cronJobPeriod": "30 ngày"
 	},
 	"private": {
 		"apiConsumerKey": "",
@@ -12,7 +12,8 @@
 		"crmLeadSubject": "Lead from matchingscore.com",
 		"crmAPIDisabled": true,
 		"cronJobPeriod": "every 2 minutes",
-		"matchingScorePullPeriod": 43200,
+		"matchingScoreDataTimeRange": 43200,
+		"matchingScoreDataOutDate": 3,
 		"debug": false,
 		"debugLevel": 1
 	}

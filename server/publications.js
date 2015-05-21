@@ -9,10 +9,14 @@ Meteor.publish('matchingscores', function (city, sortField, loadAllowed) {
 	}
 	loadAllowed = parseInt(loadAllowed);
 
+	curDate = new Date();
+	curDate.setMinutes(curDate.getMinutes() - Meteor.settings.private.matchingScoreDataOutDate);
+
 	var filter = {sort: {}};
 	filter.sort[sortField] = -1;
 	filter.limit = loadAllowed;
-	return MatchingScores.find({cityId: city}, filter);
+	
+	return MatchingScores.find({cityId: city, updateDate: {$gt: curDate}}, filter);
 });
 
 Meteor.publish('msquicksearch', function (city, industry) {
