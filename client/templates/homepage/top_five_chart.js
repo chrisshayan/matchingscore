@@ -32,7 +32,7 @@ Template.topFiveChart.rendered = function() {
 				type: 'column'
 			},
 			title: {
-				text: 'Biểu đồ Matching Score',
+				text: 'Matching Score',
 				x: -20
 			},
 			subtitle: {
