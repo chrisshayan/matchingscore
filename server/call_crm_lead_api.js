@@ -1,4 +1,5 @@
 addCrmLead = function (customerInfo) {
+    debuger('Calling to Crm API');
     try {
         debuger('Adding ... CRM Lead for ' + customerInfo.email + ' ' + customerInfo.locationCrmCode, 2);
 
