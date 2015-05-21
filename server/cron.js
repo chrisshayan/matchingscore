@@ -17,7 +17,7 @@ SyncedCron.add({
 	name: 'Pull applications matching score from vietnamworks',
 	schedule: function(parser){
 		// parser is a later.parse object
-		return parser.text(Meteor.settings.private.cronJobPeriod);
+		return parser.text(Meteor.settings.private.cronJobSchedule);
 		//return parser.text('every 30 seconds');
 	},
 	job: function(){
