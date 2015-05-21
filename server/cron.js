@@ -17,13 +17,13 @@ SyncedCron.add({
 	name: 'Pull applications matching score from vietnamworks',
 	schedule: function(parser){
 		// parser is a later.parse object
-		return parser.text(Meteor.settings.private.cronJobPeriod);
+		return parser.text(Meteor.settings.private.cronJobSchedule);
 		//return parser.text('every 30 seconds');
 	},
 	job: function(){
 		// Call function for pulling data from API
 		// Get matching score base on city and period of applications
-		var period = Meteor.settings.private.matchingScorePullPeriod;
+		var period = Meteor.settings.private.matchingScoreDataTimeRange;
 
 		// Get matching score for all locations
 		debuger('Get matching score for all locations...');

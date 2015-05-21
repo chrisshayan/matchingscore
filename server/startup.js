@@ -5,7 +5,7 @@ Meteor.startup(function(){
 
 	// Initialize data for matching score
 	if(MatchingScores.find().count() == 0){
-		initializeMatchingScores(Meteor.settings.private.matchingScorePullPeriod);
+		initializeMatchingScores(Meteor.settings.private.matchingScoreDataTimeRange);
 	}
 
 	// Start cron to pull application matching score from vietnamworks

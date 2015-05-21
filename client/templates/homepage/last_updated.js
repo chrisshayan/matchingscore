@@ -8,7 +8,7 @@ Template.lastUpdated.helpers({
 	},
 	getCronPeriod: function(){
 		retString = '<em>dựa theo số lượt ứng tuyển trong vòng <strong>' + 
-			Meteor.settings.public.cronJobPeriod + 
+			Meteor.settings.public.matchingScoreDataTimeRange + 
 			'</strong></em>';
 		return retString;
 	}

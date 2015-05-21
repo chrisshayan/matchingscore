@@ -68,18 +68,18 @@ updateMatchingScore = function(industry, runDate, cityId){
 //Check if data existent for searched city, if existed, check updated date.
 pullSearchMatchingScore = function(city){
   var searchResult = MatchingScores.findOne({cityId: city});
-  var period = Meteor.settings.private.matchingScorePullPeriod;
+  var period = Meteor.settings.private.matchingScoreDataTimeRange;
   if (searchResult){
     dataUpdatedOn = new Date(searchResult.updateDate);
-    debuger('Data updated on ' + dataUpdatedOn + ' - C ' + city);
+    debuger('Data updated on ' + dataUpdatedOn + ' - C ' + city, 2);
 
     curDate = new Date();
-    if (dataUpdatedOn < curDate.setMinutes(curDate.getMinutes() - 3)){
-      debuger("[Outdated] Pull matching score - C " + city);
+    if (dataUpdatedOn < curDate.setMinutes(curDate.getMinutes() - Meteor.settings.private.matchingScoreDataOutDate)){
+      debuger("[Outdated] Pull matching score - C " + city, 2);
       pullMatchingScores(city, period);
     }
   } else {
-    debuger("[New] Pull matching score - C " + city);
+    debuger("[New] Pull matching score - C " + city, 2);
     pullMatchingScores(city, period);
   }
 };
