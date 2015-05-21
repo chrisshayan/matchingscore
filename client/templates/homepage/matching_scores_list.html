@@ -14,18 +14,46 @@
 		</form>
 	</section>
 	{{#if chooseGraph}}
-		<a class="choose-graph btn btn-primary active">Graph</a>
-		<a class="choose-grid btn btn-default">Grid</a>
+		<div>
+			<div class="pull-left">
+				<a class="choose-graph btn btn-primary active">Graph</a>
+				<a class="choose-grid btn btn-default">Grid</a>
+			</div>
+			<div class="pull-right">
+				<em>Sắp xếp theo :</em>
+				{{#if sortByAvg}}
+					<a class="sortAvg btn btn-info active">Trung bình MatchingScore</a>
+					<a class="sortCount btn btn-info">Số lượt ứng tuyển</a>
+				{{else}}
+					<a class="sortAvg btn btn-info">Trung bình MatchingScore</a>
+					<a class="sortCount btn btn-info active">Số lượt ứng tuyển</a>
+				{{/if}}
+			</div>
+		</div>
 		<section class="matching-score-graph">
         	{{#if Template.subscriptionsReady}}
-        		{{> topFiveChart top5MatchingScore=topFiveMatchingScore}}
+        		{{> topFiveChart top5MatchingScore=topFiveMatchingScore sortByAvg=sortByAvg}}
         	{{else}}
         		<div class="loader-wrapper">{{>spinner}}</div>
         	{{/if}}
 		</section>
 	{{else}}
-		<a class="choose-graph btn btn-primary">Graph</a>
-		<a class="choose-grid btn btn-default active">Grid</a>
+		<div>
+			<div class="pull-left">
+				<a class="choose-graph btn btn-primary">Graph</a>
+				<a class="choose-grid btn btn-default active">Grid</a>
+			</div>
+			<div class="pull-right">
+				<em>Sắp xếp theo :</em>
+				{{#if sortByAvg}}
+					<a class="sortAvg btn btn-info active">Trung bình MatchingScore</a>
+					<a class="sortCount btn btn-info">Số lượt ứng tuyển</a>
+				{{else}}
+					<a class="sortAvg btn btn-info">Trung bình MatchingScore</a>
+					<a class="sortCount btn btn-info active">Số lượt ứng tuyển</a>
+				{{/if}}
+			</div>
+		</div>
 		<section class="matching-score-list">
 			<table class="table table-bordered">
 				<thead>

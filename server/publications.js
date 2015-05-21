@@ -1,4 +1,4 @@
-Meteor.publish('matchingscores', function (city, loadAllowed) {
+Meteor.publish('matchingscores', function (city, sortField, loadAllowed) {
 	if(city == 'null' || city == 'undefined' || city == 0){
 		city = -1;
 	}
@@ -8,8 +8,11 @@ Meteor.publish('matchingscores', function (city, loadAllowed) {
 		loadAllowed = 6;
 	}
 	loadAllowed = parseInt(loadAllowed);
-	
-    return MatchingScores.find({cityId: city}, {limit: loadAllowed});
+
+	var filter = {sort: {}};
+	filter.sort[sortField] = -1;
+	filter.limit = loadAllowed;
+	return MatchingScores.find({cityId: city}, filter);
 });
 
 Meteor.publish('msquicksearch', function (city, industry) {

@@ -19,6 +19,13 @@ Template.topFiveChart.rendered = function() {
 			matchingScores.max.push(top5MatchingScore[i].maxMatchingScore);
 			matchingScores.avg.push(top5MatchingScore[i].avgMatchingScore);
 		}
+		
+		var chartSubtitle;
+		if(Template.instance().data.sortByAvg){
+			chartSubtitle = '5 ngành nghề có Matching Score trung bình cao nhất'
+		} else {
+			chartSubtitle = '5 ngành nghề có số lượt ứng tuyển cao nhất'
+		}
 	
 		$('#top-five-chart').highcharts({
 			chart: {
@@ -29,7 +36,7 @@ Template.topFiveChart.rendered = function() {
 				x: -20
 			},
 			subtitle: {
-				text: '5 ngành nghề có Matching Score trung bình cao nhất',
+				text: chartSubtitle,
 				x: -20
 			},
 			xAxis: {
