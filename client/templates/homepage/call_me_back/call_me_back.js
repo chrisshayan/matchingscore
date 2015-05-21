@@ -24,6 +24,8 @@ Template.callMeBackModal.events({
             });
 
             $('#callMeBackModal').modal('hide');
+
+            window.scrollTo(0, 0);
         }
     },
 
