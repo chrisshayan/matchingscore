@@ -7,7 +7,8 @@ callVietnamworksAPI = function(apiName, parameters){
 
     // Complete API URL
     url += parameters;
-    //debuger(url);
+    
+    debuger('Calling to VietnamWork API ' + apiName, 2);
     try{
         var result = HTTP.get(
             url,

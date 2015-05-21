@@ -33,6 +33,10 @@ Meteor.methods({
         customerInfo.locationCrmCode = toCRMLocation(customerInfo.vnwCityId);
         callMeBackUsers.insert(customerInfo);
 
-        return addCrmLead(customerInfo);
+        if(Meteor.settings.private.crmAPIDisabled){
+            return true;
+        } else {
+            return addCrmLead(customerInfo);
+        }
     }
 });
