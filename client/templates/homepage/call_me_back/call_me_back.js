@@ -3,6 +3,7 @@ regexEmail = /^((([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\u
 
 Template.callMeBackModal.events({
     'click #btnCallMeBackModal': function (e) {
+        cleanError('callMeBack');
 
         if (callMeBackValidation()) {
             var customerInfo = {

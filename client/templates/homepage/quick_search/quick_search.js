@@ -69,7 +69,7 @@ Template.quickSearch.events({
     'click #btn-show-me': function(event, instance){
         event.preventDefault();
 
-        Errors.remove({errorType:"quickSearch"});
+        cleanError('quickSearch');
 
         var searchCondition = instance.searchCondition.get();
         searchCondition.selectedIndustry = parseInt($('#selectSearchCategory').val());
