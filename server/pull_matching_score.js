@@ -11,15 +11,19 @@ pullMatchingScores = function(cityId, period){
 
     data = callVietnamworksAPI(apiName, parameters);
 
+    var result = true;
+
     _.each(data, function(industry){
         industry.cityId = cityId;
 
         if(MatchingScores.find({ industryId: Number(industry.industryid), cityId: Number(cityId) }).count() == 0){
             // Insert Matching Scores if not exists
-            var insertIndustryData = insertMatchingScore(industry, runDate, cityId);
+            result &= insertMatchingScore(industry, runDate, cityId);
         } else{
             // Update Matching Scores if exists
-            var updateIndustryData = updateMatchingScore(industry, runDate, cityId);
+            result &= updateMatchingScore(industry, runDate, cityId);
         }
     });
+
+    return result;
 };
