@@ -16,7 +16,13 @@ Meteor.publish('matchingscores', function (city, sortField, loadAllowed) {
 	filter.sort[sortField] = -1;
 	filter.limit = loadAllowed;
 	
-	return MatchingScores.find({cityId: city, updateDate: {$gt: curDate}}, filter);
+	var result = MatchingScores.find({cityId: city, updateDate: {$gt: curDate}}, filter);
+	if(result.count() == 0){
+		debuger('No data found, pulling new data from API!', 1);
+		pullMatchingScores(city, Meteor.settings.private.matchingScoreDataTimeRange);
+		result = MatchingScores.find({cityId: city, updateDate: {$gt: curDate}}, filter);
+	}
+	return result;
 });
 
 Meteor.publish('msquicksearch', function (city, industry) {
